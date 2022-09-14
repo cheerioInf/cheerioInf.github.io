@@ -1,0 +1,829 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.jpg">
+  <link rel="icon" href="/img/fluid.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="❓ 什么是模块化将复杂的程序按照一定的规范封装成几个块，并组合在一起，模块中的数据与实现是私有的，只向外部暴露一些接口与其他模块通信。 🚀 模块化的好处 避免命名冲突、污染全局 可以更好的分离，按需加载 更高的复用性、可移植性  👍 模块化的方法早期解决方案 全局 function 模式  编码: 将不同的功能封装成不同的全局函数。 问题: 污染全局命名空间, 容易引起命名冲突或数据不安全，而">
+<meta property="og:type" content="article">
+<meta property="og:title" content="前端模块化">
+<meta property="og:url" content="http://example.com/2022/09/14/%E5%89%8D%E7%AB%AF%E6%A8%A1%E5%9D%97%E5%8C%96/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="❓ 什么是模块化将复杂的程序按照一定的规范封装成几个块，并组合在一起，模块中的数据与实现是私有的，只向外部暴露一些接口与其他模块通信。 🚀 模块化的好处 避免命名冲突、污染全局 可以更好的分离，按需加载 更高的复用性、可移植性  👍 模块化的方法早期解决方案 全局 function 模式  编码: 将不同的功能封装成不同的全局函数。 问题: 污染全局命名空间, 容易引起命名冲突或数据不安全，而">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-09-14T11:22:46.000Z">
+<meta property="article:modified_time" content="2022-09-14T11:25:00.798Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>前端模块化 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="前端模块化"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-09-14 19:22" pubdate>
+          2022年9月14日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          9.7k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          81 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">前端模块化</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h2 id="❓-什么是模块化"><a href="#❓-什么是模块化" class="headerlink" title="❓ 什么是模块化"></a>❓ 什么是模块化</h2><p>将复杂的程序按照一定的规范封装成几个块，并组合在一起，模块中的<strong>数据与实现是私有的</strong>，只向外部<strong>暴露一些接口</strong>与其他模块通信。</p>
+<h2 id="🚀-模块化的好处"><a href="#🚀-模块化的好处" class="headerlink" title="🚀 模块化的好处"></a>🚀 模块化的好处</h2><ul>
+<li>避免命名冲突、污染全局</li>
+<li>可以更好的分离，按需加载</li>
+<li>更高的复用性、可移植性</li>
+</ul>
+<h2 id="👍-模块化的方法"><a href="#👍-模块化的方法" class="headerlink" title="👍 模块化的方法"></a>👍 模块化的方法</h2><h3 id="早期解决方案"><a href="#早期解决方案" class="headerlink" title="早期解决方案"></a>早期解决方案</h3><ol>
+<li><p><strong>全局 <code>function</code> 模式</strong></p>
+<ul>
+<li>编码: 将不同的功能封装成不同的全局函数。</li>
+<li>问题: 污染全局命名空间, 容易引起命名冲突或数据不安全，而且模块成员之间看不出直接关系。</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">f1</span>(<span class="hljs-params"></span>) &#123;<br>  <span class="hljs-comment">//...</span><br>&#125;<br><span class="hljs-keyword">function</span> <span class="hljs-title function_">f2</span>(<span class="hljs-params"></span>) &#123;<br>  <span class="hljs-comment">//...</span><br>&#125;<br></code></pre></td></tr></table></figure>
+</li>
+<li><p><strong><code>namespace</code> 模式</strong></p>
+<ul>
+<li>编码: 简单对象封装。</li>
+<li>问题: 数据不安全(外部可以直接修改模块内部的数据)。</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">var</span> myModule = &#123;<br>  <span class="hljs-attr">data</span>: <span class="hljs-string">&#x27;www.baidu.com&#x27;</span>,<br>  <span class="hljs-title function_">foo</span>(<span class="hljs-params"></span>) &#123;<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">`foo() <span class="hljs-subst">$&#123;<span class="hljs-variable language_">this</span>.data&#125;</span>`</span>)<br>  &#125;,<br>&#125;<br>myModule.<span class="hljs-property">data</span> = <span class="hljs-string">&#x27;other data&#x27;</span> <span class="hljs-comment">//能直接修改模块内部的数据</span><br>myModule.<span class="hljs-title function_">foo</span>() <span class="hljs-comment">// foo() other data</span><br></code></pre></td></tr></table></figure>
+</li>
+<li><p><strong>基于对象用单例模式思想解决</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">var</span> myModule = (<span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;<br>  <span class="hljs-keyword">var</span> someThing = <span class="hljs-string">&#x27;123&#x27;</span><br>  <span class="hljs-keyword">var</span> otherThing = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>]<br><br>  <span class="hljs-keyword">function</span> <span class="hljs-title function_">doSomeThing</span>(<span class="hljs-params"></span>) &#123;<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(someThing)<br>  &#125;<br><br>  <span class="hljs-keyword">return</span> &#123; doSomeThing &#125;<br>&#125;)()<br><br>myModule.<span class="hljs-title function_">doSomeThing</span>()<br></code></pre></td></tr></table></figure>
+</li>
+<li><p><strong>匿名函数自调用通过闭包解决(IIFE)</strong></p>
+<ul>
+<li>作用: 数据是私有的, 外部只能通过暴露的方法操作</li>
+<li>编码: 将数据和行为封装到一个函数内部, 通过给 window 添加属性来向外暴露接口</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs js">;(<span class="hljs-keyword">function</span> (<span class="hljs-params">win</span>) &#123;<br>  <span class="hljs-keyword">function</span> <span class="hljs-title function_">aFn</span>(<span class="hljs-params"></span>) &#123;&#125;<br>  <span class="hljs-keyword">function</span> <span class="hljs-title function_">bFn</span>(<span class="hljs-params"></span>) &#123;&#125;<br>  win.<span class="hljs-property">myMethod</span> = &#123; aFn, bFn &#125;<br>&#125;)(<span class="hljs-variable language_">window</span>)<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>问题: 如果当前这个模块依赖另一个模块怎么办?</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">// 引入依赖</span><br>;(<span class="hljs-keyword">function</span> (<span class="hljs-params"><span class="hljs-variable language_">window</span>, $</span>) &#123;<br>  <span class="hljs-keyword">let</span> data = <span class="hljs-string">&#x27;www.baidu.com&#x27;</span><br>  <span class="hljs-keyword">function</span> <span class="hljs-title function_">foo</span>(<span class="hljs-params"></span>) &#123;<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">`foo() <span class="hljs-subst">$&#123;data&#125;</span>`</span>)<br>    $(<span class="hljs-string">&#x27;body&#x27;</span>).<span class="hljs-title function_">css</span>(<span class="hljs-string">&#x27;background&#x27;</span>, <span class="hljs-string">&#x27;red&#x27;</span>)<br>  &#125;<br>  <span class="hljs-keyword">function</span> <span class="hljs-title function_">bar</span>(<span class="hljs-params"></span>) &#123;<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">`bar() <span class="hljs-subst">$&#123;data&#125;</span>`</span>)<br>    <span class="hljs-title function_">otherFun</span>()<br>  &#125;<br>  <span class="hljs-keyword">function</span> <span class="hljs-title function_">otherFun</span>(<span class="hljs-params"></span>) &#123;<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;otherFun()&#x27;</span>)<br>  &#125;<br>  <span class="hljs-variable language_">window</span>.<span class="hljs-property">myModule</span> = &#123; foo, bar &#125;<br>&#125;)(<span class="hljs-variable language_">window</span>, jQuery)<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>难以维护，依然要创建全局变量污染环境</li>
+<li>请求过多，加载顺序需要手动管理</li>
+<li>依赖模糊</li>
+</ul>
+</li>
+</ol>
+<h3 id="模块化规范"><a href="#模块化规范" class="headerlink" title="模块化规范"></a>模块化规范</h3><ul>
+<li><p><strong>CommonJS</strong> (同步模块加载)</p>
+<p>Node.js 采用的就是该规范，<strong>在服务器端，模块的加载是运行时同步加载的；在浏览器端，模块需要提前编译打包处理。</strong></p>
+<p>每个文件都是一个模块。通过 <code>module.exports = value</code> &#x2F; <code>module.xxx = value</code> 暴露模块，其两者的区别为前者是代替，后者是添加。通过<code>require()</code>引入模块。</p>
+<p><strong>特点</strong>:</p>
+<ul>
+<li>所有代码都运行在模块作用域，不会污染全局作用域。</li>
+<li>模块可以多次加载，但是只会在第一次加载时运行一次，然后运行结果就被缓存了，以后再加载，就直接读取缓存结果。要想让模块再次运行，必须清除缓存。</li>
+<li>模块加载的顺序，按照其在代码中出现的顺序。</li>
+</ul>
+<p>CommonJS 模块是一个对象，它的 exports 属性（即 module.exports）是对外的接口。<strong>加载某个模块，其实是加载该模块的 module.exports 属性</strong>。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">var</span> x = <span class="hljs-number">5</span><br><span class="hljs-keyword">var</span> addX = <span class="hljs-keyword">function</span> (<span class="hljs-params">value</span>) &#123;<br>  <span class="hljs-keyword">return</span> value + x<br>&#125;<br><span class="hljs-variable language_">module</span>.<span class="hljs-property">exports</span>.<span class="hljs-property">x</span> = x<br><span class="hljs-variable language_">module</span>.<span class="hljs-property">exports</span>.<span class="hljs-property">addX</span> = addX<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight arcade"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs arcade"><span class="hljs-keyword">var</span> example = require(<span class="hljs-string">&#x27;./example.js&#x27;</span>);<br><span class="hljs-built_in">console</span>.<span class="hljs-built_in">log</span>(example.x); <span class="hljs-comment">// 5</span><br><span class="hljs-built_in">console</span>.<span class="hljs-built_in">log</span>(example.addX(<span class="hljs-number">1</span>)); <span class="hljs-comment">// 6</span><br></code></pre></td></tr></table></figure>
+
+<p><strong>在浏览器中运行 CommonJS</strong>：使用 browserify。</p>
+<p><em>Tip: <strong>CommonJS 模块的加载机制是，输入的是被输出的值的拷贝。也就是说，一旦输出一个值，模块内部的变化就影响不到这个值</strong>。模块只会在第一次加载时运行一次，然后运行结果就被缓存，之后加载会直接读取缓存的结果，想要模块再次运行就必须先清除缓存。</em></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">// test.js</span><br><span class="hljs-keyword">let</span> counter = <span class="hljs-number">3</span><br><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">incCounter</span>(<span class="hljs-params"></span>) &#123;<br>  counter++<br>&#125;<br><br><span class="hljs-variable language_">module</span>.<span class="hljs-property">exports</span> = &#123;<br>  counter,<br>  incCounter,<br>&#125;<br><br><span class="hljs-comment">// main.js</span><br><span class="hljs-keyword">const</span> test1 = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;./test1.js&#x27;</span>)<br><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(test1.<span class="hljs-property">counter</span>) <span class="hljs-comment">// 3</span><br>test1.<span class="hljs-title function_">incCounter</span>()<br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(test1.<span class="hljs-property">counter</span>) <span class="hljs-comment">// 3，未清除缓存</span><br></code></pre></td></tr></table></figure>
+
+<p><code>test.js</code>模块加载以后，它的内部变化就影响不到输出的<code>test.counter</code>了。这是因为<code>test.counter</code>是一个原始类型的值，会被缓存。</p>
+<p>除非写成一个函数，才能得到内部变动后的值。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">// test.js</span><br><span class="hljs-keyword">var</span> counter = <span class="hljs-number">3</span><br><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">incCounter</span>(<span class="hljs-params"></span>) &#123;<br>  counter++<br>&#125;<br><br><span class="hljs-variable language_">module</span>.<span class="hljs-property">exports</span> = &#123;<br>  <span class="hljs-comment">// 写成一个函数</span><br>  <span class="hljs-keyword">get</span> <span class="hljs-title function_">counter</span>() &#123;<br>    <span class="hljs-keyword">return</span> counter<br>  &#125;,<br>  incCounter,<br>&#125;<br></code></pre></td></tr></table></figure>
+</li>
+<li><p><strong>AMD</strong> (异步模块加载)</p>
+<p>由于 Node.js 主要用于服务器编程，模块文件一般都已经存在于本地硬盘，所以加载起来比较快，不用考虑非同步加载的方式，所以 CommonJS 规范比较适用。但是，<strong>如果是浏览器环境，要从服务器端加载模块，这时就必须采用非同步模式，因此浏览器端一般采用 AMD 规范</strong>。此外 AMD 规范比 CommonJS 规范在浏览器端实现要来得早。</p>
+<p>RequireJS 是一个遵守 AMD 规范的工具库，可以通过<code>define</code>的方法将代码定义为模块，通过<code>require()</code>的方法实现模块的引用。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">//定义没有依赖的模块</span><br><span class="hljs-title function_">define</span>(<span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;<br>  <span class="hljs-keyword">return</span> 模块<br>&#125;)<br><br><span class="hljs-comment">//定义有依赖的模块</span><br><span class="hljs-title function_">define</span>([<span class="hljs-string">&#x27;module1&#x27;</span>, <span class="hljs-string">&#x27;module2&#x27;</span>], <span class="hljs-keyword">function</span> (<span class="hljs-params">m1, m2</span>) &#123;<br>  <span class="hljs-keyword">return</span> 模块<br>&#125;)<br><br><span class="hljs-comment">//引入模块</span><br><span class="hljs-built_in">require</span>([<span class="hljs-string">&#x27;module1&#x27;</span>, <span class="hljs-string">&#x27;module2&#x27;</span>], <span class="hljs-keyword">function</span> (<span class="hljs-params">m1, m2</span>) &#123;<br>  使用m1 / m2<br>&#125;)<br></code></pre></td></tr></table></figure>
+</li>
+<li><p><strong>ES6 模块</strong> (异步模块加载)</p>
+<p>ES6 模块的设计思想是尽量的<strong>静态化</strong>，使得编译时就能确定模块的依赖关系，以及输入和输出的变量。</p>
+<p>通过 <code>export</code> (非默认暴露)&#x2F; <code>export default</code> (默认暴露)暴露模块，<code>import</code> 导入模块。非默认暴露时需要用中括号规范，并且在导入时解构赋值。默认暴露则不必。</p>
+<p>若要在<code>Node.js</code>中使用 ESM，要求采用<code>.mjs</code>后缀文件名。也就是说，只要脚本文件里面使用<code>import</code>或者<code>export</code>命令，那么就必须采用<code>.mjs</code>后缀名。</p>
+</li>
+</ul>
+<p><strong>ES6 和 CommonJS 模块的区别</strong>:</p>
+<ol>
+<li>CommonJS 模块输出的是一个值的拷贝，<strong>ES6 模块输出的是值的引用</strong>。</li>
+<li><strong>CommonJS 模块是运行时加载，ES6 模块是编译时输出接口</strong>。</li>
+<li>CommonJS 模块的<code>require()</code>是同步加载模块，ES6 模块的<code>import</code>命令是异步加载。</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">// test.js</span><br><span class="hljs-keyword">var</span> counter = <span class="hljs-number">3</span><br><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">incCounter</span>(<span class="hljs-params"></span>) &#123;<br>  counter++<br>&#125;<br><br><span class="hljs-keyword">export</span> &#123; counter, incCounter &#125;<br><br><span class="hljs-comment">// main.js</span><br><span class="hljs-keyword">import</span> &#123; incCounter, counter &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./test.js&#x27;</span><br><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(counter) <span class="hljs-comment">// 3</span><br><span class="hljs-comment">// 给导入变量赋值会报错</span><br><span class="hljs-comment">// counter = 4 //Assignment to constant variable.</span><br><span class="hljs-title function_">incCounter</span>()<br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(counter) <span class="hljs-comment">// 4</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><ul>
+<li>CommonJS 规范主要用于服务端编程，加载模块是同步的，这并不适合在浏览器环境，因为同步意味着阻塞加载，浏览器资源是异步加载的，因此有了 AMD、CMD 解决方案。</li>
+<li>AMD 规范在浏览器环境中异步加载模块，而且可以并行加载多个模块。不过，AMD 规范开发成本高，代码的阅读和书写比较困难，模块定义方式的语义不顺畅。</li>
+<li><strong>ES6 在语言标准的层面上，实现了模块功能，而且实现得相当简单，完全可以取代 CommonJS 和 AMD 规范，成为浏览器和服务器通用的模块解决方案</strong>。</li>
+</ul>
+<h2 id="🔧-前端构建工具"><a href="#🔧-前端构建工具" class="headerlink" title="🔧 前端构建工具"></a>🔧 前端构建工具</h2><h3 id="什么时候使用构建工具？"><a href="#什么时候使用构建工具？" class="headerlink" title="什么时候使用构建工具？"></a>什么时候使用构建工具？</h3><ul>
+<li>当你使用 less,scss 的时候想自动编译成浏览器认识的 css。</li>
+<li>当你想将多个 js 文件自动合并到一起减少 http 请求的时候。<ul>
+<li><em>当我们在<code>&lt;script&gt;</code>标签内引入 js 文件，或者在模块内使用<code>import</code>时，都会发送一个 http 请求。请求过多时页面消耗明显增加，当你在编译阶段将其合成为一个 bundle 时，就只需要发送一个 http 请求，在一定程度上提高了效率。</em></li>
+</ul>
+</li>
+<li>自动开启一个服务器，修改了代码无需重新打开浏览器页面自动刷新了。</li>
+<li>当你写了一个 ts 文件，它怎么自动转化为 js 文件被浏览器引入。</li>
+<li>…more</li>
+</ul>
+<p><strong>webpack 核心概念</strong>:</p>
+<ul>
+<li><p><code>entry</code>入口</p>
+<p><code>entry</code>告诉 webpack 应该从哪里开始构建内部依赖图处理依赖并输出到 bundles 里，默认是 src 文件下的 index.js。</p>
+</li>
+<li><p><code>output</code> 出口</p>
+<p>告诉 webpack 如何输出它所构建的 bundles，包括路径、命名等，默认为根目录下的 dist 文件夹下。</p>
+</li>
+<li><p><code>loader</code> 预处理器</p>
+<p>webpack 原则上只能处理<code>js</code>、<code>json</code>文件，而<code>loader</code>可以使 webpack 识别处理其他文件并转化为模块。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">// 使用css-loader来处理css</span><br>npn install css-loader -D<br><br><span class="hljs-keyword">const</span> path = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;path&#x27;</span>)<br><br><span class="hljs-variable language_">module</span>.<span class="hljs-property">exports</span> = &#123;<br>  <span class="hljs-attr">mode</span>: <span class="hljs-string">&#x27;development&#x27;</span>, <span class="hljs-comment">// 模式</span><br>  <span class="hljs-attr">entry</span>: <span class="hljs-string">&#x27;./src/main.css&#x27;</span>, <span class="hljs-comment">// 打包入口地址</span><br>  <span class="hljs-attr">output</span>: &#123;<br>    <span class="hljs-attr">filename</span>: <span class="hljs-string">&#x27;bundle.css&#x27;</span>, <span class="hljs-comment">// 输出文件名</span><br>    <span class="hljs-attr">path</span>: path.<span class="hljs-title function_">join</span>(__dirname, <span class="hljs-string">&#x27;dist&#x27;</span>) <span class="hljs-comment">// 输出文件目录</span><br>  &#125;,<br>  <span class="hljs-attr">module</span>: &#123;<br>    <span class="hljs-attr">rules</span>: [ <span class="hljs-comment">// 转换规则</span><br>      &#123;<br>        <span class="hljs-attr">test</span>: <span class="hljs-regexp">/\.css$/</span>, <span class="hljs-comment">//匹配所有的 css 文件</span><br>        <span class="hljs-attr">use</span>: <span class="hljs-string">&#x27;css-loader&#x27;</span> <span class="hljs-comment">// use: 对应的 Loader 名称</span><br>      &#125;<br>    ]<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+</li>
+<li><p><code>plugin</code>插件</p>
+<p>与 <code>loader</code> 用于转换特定类型的文件不同，<strong>插件（Plugin）可以贯穿 Webpack 打包的生命周期，执行不同的任务</strong>，是针对整个打包流程的插件处理（打包优化、资源管理、注入环境变量）</p>
+<p>如果我想打包后的资源文件，例如：js 或者 css 文件可以自动引入到 Html 中，就需要使用插件<code>html-webpack-plugin</code>来帮助你完成这个操作</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs js">npm install html-webpack-plugin -D<br><br><span class="hljs-keyword">const</span> path = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;path&#x27;</span>)<br><span class="hljs-keyword">const</span> <span class="hljs-title class_">HtmlWebpackPlugin</span> = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;html-webpack-plugin&#x27;</span>)<br><br><span class="hljs-variable language_">module</span>.<span class="hljs-property">exports</span> = &#123;<br>  <span class="hljs-attr">mode</span>: <span class="hljs-string">&#x27;development&#x27;</span>, <span class="hljs-comment">// 模式</span><br>  <span class="hljs-attr">entry</span>: <span class="hljs-string">&#x27;./src/index.js&#x27;</span>, <span class="hljs-comment">// 打包入口地址</span><br>  <span class="hljs-attr">output</span>: &#123;<br>    <span class="hljs-attr">filename</span>: <span class="hljs-string">&#x27;bundle.js&#x27;</span>, <span class="hljs-comment">// 输出文件名</span><br>    <span class="hljs-attr">path</span>: path.<span class="hljs-title function_">join</span>(__dirname, <span class="hljs-string">&#x27;dist&#x27;</span>) <span class="hljs-comment">// 输出文件目录</span><br>  &#125;,<br>  <span class="hljs-attr">module</span>: &#123;<br>    <span class="hljs-attr">rules</span>: [<br>      &#123;<br>        <span class="hljs-attr">test</span>: <span class="hljs-regexp">/\.css$/</span>, <span class="hljs-comment">//匹配所有的 css 文件</span><br>        <span class="hljs-attr">use</span>: <span class="hljs-string">&#x27;css-loader&#x27;</span> <span class="hljs-comment">// use: 对应的 Loader 名称</span><br>      &#125;<br>    ]<br>  &#125;,<br>  <span class="hljs-attr">plugins</span>:[ <span class="hljs-comment">// 配置插件</span><br>    <span class="hljs-keyword">new</span> <span class="hljs-title class_">HtmlWebpackPlugin</span>(&#123;<br>      <span class="hljs-attr">template</span>: <span class="hljs-string">&#x27;./src/index.html&#x27;</span><br>    &#125;)<br>  ]<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>每次打包的时候，打包目录都会遗留上次打包的文件，为了保持打包目录的纯净，我们需要在打包前将打包目录清空。这里我们可以使用插件<code>clean-webpack-plugin</code>来实现。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs js">$ npm install clean-webpack-plugin -D<br><br><span class="hljs-keyword">const</span> path = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;path&#x27;</span>)<br><span class="hljs-keyword">const</span> <span class="hljs-title class_">HtmlWebpackPlugin</span> = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;html-webpack-plugin&#x27;</span>)<br><span class="hljs-comment">// 引入插件</span><br><span class="hljs-keyword">const</span> &#123; <span class="hljs-title class_">CleanWebpackPlugin</span> &#125; = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;clean-webpack-plugin&#x27;</span>)<br><br><span class="hljs-variable language_">module</span>.<span class="hljs-property">exports</span> = &#123;<br>  <span class="hljs-comment">// ...</span><br>  <span class="hljs-attr">plugins</span>:[ <span class="hljs-comment">// 配置插件</span><br>    <span class="hljs-keyword">new</span> <span class="hljs-title class_">HtmlWebpackPlugin</span>(&#123;<br>      <span class="hljs-attr">template</span>: <span class="hljs-string">&#x27;./src/index.html&#x27;</span><br>    &#125;),<br>    <span class="hljs-keyword">new</span> <span class="hljs-title class_">CleanWebpackPlugin</span>() <span class="hljs-comment">// 引入插件</span><br>  ]<br>&#125;<br></code></pre></td></tr></table></figure>
+</li>
+<li><p><code>mode</code>模式</p>
+<p>值为<code>production</code>、<code>development</code>、<code>none</code>中的一个，默认值为<code>production</code>。</p>
+</li>
+</ul>
+<ol>
+<li>在<strong>生产环境 production</strong>下，可以通过压缩代码来减小体积优化性能。</li>
+<li>在<strong>开发环境 development</strong>下，省了代码优化步骤，可以使用<code>devtool: source-map</code>来清楚知道报错位置在哪。</li>
+</ol>
+<ul>
+<li><p><code>devSever</code></p>
+<p>开启一个本地服务器，实现热更新等服务。</p>
+</li>
+</ul>
+<p><strong>webpack 的工作过程</strong>:</p>
+<ol>
+<li>从入口(entry)开始，<strong>递归</strong>入口文件所依赖的 module。</li>
+<li>找到每一个 module，根据对应的 loader 转化这个 module。</li>
+<li>然后，对 module 依赖的所有 module 进行转化，直到没有依赖。</li>
+<li>其次，以入口文件(entry)为单位进行分组，一个 entry 和其所有的依赖 module 被分到一个块(Chunk)。</li>
+<li>最后，webpack 会把所有 Chunk 转化成文件输出，在整个流程中会在恰当时期执行 plugin 里定义的扩展插件。</li>
+</ol>
+<p><strong>根据依赖打包的好处</strong>:</p>
+<ul>
+<li>pass 掉没有用到的静态资源。</li>
+<li>多次引用一个依赖时可以分割出这个依赖，以免重复打包到 bundle 里。</li>
+</ul>
+<p><strong>webpack 安装</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js">yarn webpack webpack-cli -D<br></code></pre></td></tr></table></figure>
+
+<p>需要同时安装<code>webpack</code>和<code>webpack-cli</code>(webpack 命令行工具)。</p>
+<p>在<code>webpack.config.js</code>中配置 webpack。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> path = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;path&#x27;</span>)<br><br><span class="hljs-variable language_">module</span>.<span class="hljs-property">exports</span> = &#123;<br>  <span class="hljs-attr">mode</span>: <span class="hljs-string">&#x27;development&#x27;</span>, <span class="hljs-comment">// 模式</span><br>  <span class="hljs-attr">entry</span>: <span class="hljs-string">&#x27;./src/index.js&#x27;</span>, <span class="hljs-comment">// 打包入口地址</span><br>  <span class="hljs-attr">output</span>: &#123;<br>    <span class="hljs-attr">filename</span>: <span class="hljs-string">&#x27;bundle.js&#x27;</span>, <span class="hljs-comment">// 输出文件名</span><br>    <span class="hljs-attr">path</span>: path.<span class="hljs-title function_">join</span>(__dirname, <span class="hljs-string">&#x27;dist&#x27;</span>), <span class="hljs-comment">// 输出文件目录</span><br>  &#125;,<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="vite"><a href="#vite" class="headerlink" title="vite"></a>vite</h3><p>解决了 webpack 如下问题：</p>
+<ol>
+<li>构建 bundle 时间过长，服务器启动较慢。</li>
+<li>更快的<code>hmr</code>(热更新)。</li>
+<li>真正的按需编译。</li>
+<li>配置简单，快速开发。</li>
+</ol>
+<h2 id="🐢-前端规范工具"><a href="#🐢-前端规范工具" class="headerlink" title="🐢 前端规范工具"></a>🐢 前端规范工具</h2><h3 id="TypeScript"><a href="#TypeScript" class="headerlink" title="TypeScript"></a>TypeScript</h3><p>可以静态的推断与规定类型，便于维护项目，但是增加了开发成本。</p>
+<h3 id="Eslint"><a href="#Eslint" class="headerlink" title="Eslint"></a>Eslint</h3><p>在项目开发中，往往都是多人协调开发，但是每个人的代码风格是不一样的，在团队维护的时候可能会面临很多的矛盾。那么工程化解决的一个重要的问题就是：使代码规范化。形成统一的代码风格。<code>ESLint</code>就是用来统一 JavaScript 代码风格的工具，即代码检验工具。</p>
+<ul>
+<li>ESLint 使用 Espree 解析 JavaScript。</li>
+<li>ESLint 使用 AST 去分析代码中的模式。</li>
+<li>ESLint 是完全插件化的。每一个规则都是一个插件并且你可以在运行时添加更多的规则。</li>
+</ul>
+<h2 id="🏠-Web-API"><a href="#🏠-Web-API" class="headerlink" title="🏠 Web API"></a>🏠 Web API</h2><p>应用程序接口（API，Application Programming Interface）</p>
+<h3 id="Storage"><a href="#Storage" class="headerlink" title="Storage"></a>Storage</h3><p>在 HTML5 中，为了解决 cookie 存储空间不足的问题(cookie 中每条 cookie 的存储空间为 4k)，增加了一个 localStorage，主要是用来作为本地存储的。</p>
+<p><code>localStorage</code>  中的键值对总是以字符串的形式存储。</p>
+<p>localStorage 中一般浏览器支持的容量大小是 5M，针对不同的浏览器，localStorage 容量大小会有所不同。</p>
+<p><code>sessionStorage</code>：为每一个给定的源（given origin）维持一个独立的存储区域，该存储区域在页面会话期间可用（即只要浏览器处于打开状态，包括页面重新加载和恢复）。</p>
+<p><code>localStorage</code>：同样功能，在浏览器关闭，然后重新打开后数据仍然存在。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-variable language_">localStorage</span>.<span class="hljs-title function_">setItem</span>(<span class="hljs-string">&#x27;key&#x27;</span>, <span class="hljs-string">&#x27;value&#x27;</span>) <span class="hljs-comment">// 将value保存在key中</span><br><br><span class="hljs-keyword">let</span> value = <span class="hljs-variable language_">localStorage</span>.<span class="hljs-title function_">getItem</span>(<span class="hljs-string">&#x27;key&#x27;</span>) <span class="hljs-comment">// 获取key值</span><br><br><span class="hljs-variable language_">localStorage</span>.<span class="hljs-title function_">removeItem</span>(<span class="hljs-string">&#x27;key&#x27;</span>) <span class="hljs-comment">// 移除key值</span><br></code></pre></td></tr></table></figure>
+
+<p>若让  <code>localStorage</code>  设置的某个  <strong>「key」</strong>  能在指定时间内自动失效。</p>
+<ul>
+<li>初级解法</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-variable language_">localStorage</span>.<span class="hljs-title function_">setItem</span>(<span class="hljs-string">&#x27;key&#x27;</span>, <span class="hljs-string">&#x27;value&#x27;</span>)<br><br><span class="hljs-keyword">const</span> expire = <span class="hljs-number">60</span> * <span class="hljs-number">60</span> * <span class="hljs-number">1000</span><br><span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">() =&gt;</span> &#123;<br>  <span class="hljs-variable language_">localStorage</span>.<span class="hljs-title function_">removeItem</span>(<span class="hljs-string">&#x27;key&#x27;</span>)<br>&#125;, expire)<br></code></pre></td></tr></table></figure>
+
+<h3 id="Audio"><a href="#Audio" class="headerlink" title="Audio"></a>Audio</h3><h3 id="Canvas"><a href="#Canvas" class="headerlink" title="Canvas"></a>Canvas</h3><h2 id="🚗-前端性能优化"><a href="#🚗-前端性能优化" class="headerlink" title="🚗 前端性能优化"></a>🚗 前端性能优化</h2><h3 id="回流、重绘"><a href="#回流、重绘" class="headerlink" title="回流、重绘"></a>回流、重绘</h3><p>首先浏览器会将 HTML 解析成 DOM，把 CSS 解析成 CSSOM，再将其结合产生<code>render tree</code>。</p>
+<p>当渲染树 render tree 中的一些元素需要更新样式，但这些样式属性只是改变元素的外观，风格，而不会影响布局的，比如<code>background-color</code>。则就叫称为<strong>重绘(repaint)</strong> 。</p>
+<p><strong>简单来说，重绘就是将渲染树节点转换为屏幕上的实际像素，不涉及重新布局阶段的位置与大小计算</strong></p>
+<p>当<code>render tree</code>中的元素因为尺寸、布局、隐藏等改变需要重新构建，称为**回流(reflow)**。在回流的时候，浏览器会使渲染树中受到影响的部分失效，并重新构造这部分的<code>render tree</code>。</p>
+<p>完成回流后，浏览器会重新绘制受到影响的部分到屏幕，该过程为重绘。</p>
+<p><strong>简单来说，回流就是计算元素在设备内的确切位置和大小并且重新绘制。</strong></p>
+<p>回流的代价要远大于重绘。</p>
+<p><strong>并且回流必然会造成重绘，但重绘不一定会造成回流</strong></p>
+<p><strong>会导致回流的操作</strong>:</p>
+<ol>
+<li><strong>页面首次渲染</strong>（无法避免，且开销最大）</li>
+<li><strong>浏览器窗口</strong>大小发生变化</li>
+<li>元素尺寸&#x2F;位置发生改变</li>
+<li>元素内容变化</li>
+<li>元素字体大小</li>
+<li>添加&#x2F;删除<strong>可见</strong>的 DOM</li>
+<li>css 伪类</li>
+<li>查询属性&#x2F;调用方法</li>
+</ol>
+<p><strong>如何减少回流、重绘</strong>:</p>
+<ol>
+<li>合并样式修改</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> el = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">querySelector</span>(<span class="hljs-string">&#x27;.box&#x27;</span>)<br><br>el.<span class="hljs-property">style</span>.<span class="hljs-property">margin</span> = <span class="hljs-string">&#x27;5px&#x27;</span><br>el.<span class="hljs-property">style</span>.<span class="hljs-property">borderRadius</span> = <span class="hljs-string">&#x27;12px&#x27;</span><br>el.<span class="hljs-property">style</span>.<span class="hljs-property">boxShadow</span> = <span class="hljs-string">&#x27;1px 3px 4px #ccc&#x27;</span><br></code></pre></td></tr></table></figure>
+
+<p>改为：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs js">.<span class="hljs-property">update</span>&#123;<br>  <span class="hljs-attr">margin</span>: 5px;<br>  border-<span class="hljs-attr">dadius</span>: 12px;<br>  box-<span class="hljs-attr">shadow</span>: 1px 3px 4px #ccc<br>&#125;<br><br><span class="hljs-keyword">const</span> el = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">querySelector</span>(<span class="hljs-string">&#x27;.box&#x27;</span>)<br>el.<span class="hljs-property">classList</span>.<span class="hljs-title function_">add</span>(<span class="hljs-string">&#x27;update&#x27;</span>)<br></code></pre></td></tr></table></figure>
+
+<ol start="2">
+<li><p>避免使用 table 布局</p>
+</li>
+<li><p>CSS 选择符从有往左匹配查找，避免节点层级过多</p>
+</li>
+<li><p><strong>DOM 离线处理，减少回流重绘次数</strong></p>
+<p>离线的 DOM 不属于当前 DOM 树中的任何一部分，这也就意味着我们对离线 DOM 处理就不会引起页面的回流与重绘。</p>
+<p>使用<code>display: none</code>，将元素从渲染树中完全移除，之后再在该 DOM 上操作，就不会触发回流重绘，最后将 display 改为显示，就只会触发这一次回流重绘。</p>
+<p>Tip: <code>visibility: hidden</code> 的元素只对重绘有影响，不影响重排。</p>
+<p>使用<code>documentFragment</code>创建一个 dom 文档片段，在它上面批量操作 dom，完成之后再添加到文档。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> el = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">querySelector</span>(<span class="hljs-string">&#x27;.box&#x27;</span>)<br><span class="hljs-keyword">const</span> fruits = [<span class="hljs-string">&#x27;front&#x27;</span>, <span class="hljs-string">&#x27;nanjiu&#x27;</span>, <span class="hljs-string">&#x27;study&#x27;</span>, <span class="hljs-string">&#x27;code&#x27;</span>]<br><span class="hljs-keyword">const</span> fragment = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">createDocumentFragment</span>()<br><br>fruits.<span class="hljs-title function_">forEach</span>(<span class="hljs-function">(<span class="hljs-params">item</span>) =&gt;</span> &#123;<br>  <span class="hljs-keyword">const</span> li = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">createElement</span>(<span class="hljs-string">&#x27;li&#x27;</span>)<br>  li.<span class="hljs-property">innerHTML</span> = item<br>  fragment.<span class="hljs-title function_">appendChild</span>(li)<br>&#125;)<br><br>el.<span class="hljs-title function_">appendChild</span>(fragment)<br></code></pre></td></tr></table></figure>
+
+<p>DOM 脱离普通文本流</p>
+<p>使用<code>absulute</code>&#x2F;<code>fixed</code>让元素脱离普通文本流，使用绝对定位会使改元素单独成为渲染树中 body 的一个子元素，重流开销较小。</p>
+</li>
+<li><p>CSS3 硬件加速(GPU 加速)</p>
+<p>使用<code>transform</code>、<code>opacity</code>、<code>filters</code>，不会引起回流重绘。</p>
+</li>
+</ol>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>前端模块化</div>
+      <div>http://example.com/2022/09/14/前端模块化/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>John Doe</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年9月14日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
