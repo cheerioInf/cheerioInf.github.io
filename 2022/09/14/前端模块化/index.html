@@ -1,7 +1,7 @@
 
 
 <!DOCTYPE html>
-<html lang="zh-CN" data-default-color-scheme=auto>
+<html lang="zh-CN" data-default-color-scheme=light>
 
 
 
@@ -13,21 +13,26 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="author" content="John Doe">
+  <meta name="author" content="cheerioInf">
   <meta name="keywords" content="">
   
-    <meta name="description" content="❓ 什么是模块化将复杂的程序按照一定的规范封装成几个块，并组合在一起，模块中的数据与实现是私有的，只向外部暴露一些接口与其他模块通信。 🚀 模块化的好处 避免命名冲突、污染全局 可以更好的分离，按需加载 更高的复用性、可移植性  👍 模块化的方法早期解决方案 全局 function 模式  编码: 将不同的功能封装成不同的全局函数。 问题: 污染全局命名空间, 容易引起命名冲突或数据不安全，而">
+    <meta name="description" content="模块化就是将复杂的程序按照一定的规范封装成几个块，并组合在一起，模块中的数据与实现是私有的，只向外部暴露一些接口与其他模块通信。能够避免命名冲突、污染全局，可以更好的分离，按需加载，更高的复用性、可移植性等。使以前的难以维护，依然要创建全局变量污染环境、请求过多，加载顺序需要手动管理、依赖模糊得到了很好的解决...">
 <meta property="og:type" content="article">
 <meta property="og:title" content="前端模块化">
 <meta property="og:url" content="http://example.com/2022/09/14/%E5%89%8D%E7%AB%AF%E6%A8%A1%E5%9D%97%E5%8C%96/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="❓ 什么是模块化将复杂的程序按照一定的规范封装成几个块，并组合在一起，模块中的数据与实现是私有的，只向外部暴露一些接口与其他模块通信。 🚀 模块化的好处 避免命名冲突、污染全局 可以更好的分离，按需加载 更高的复用性、可移植性  👍 模块化的方法早期解决方案 全局 function 模式  编码: 将不同的功能封装成不同的全局函数。 问题: 污染全局命名空间, 容易引起命名冲突或数据不安全，而">
+<meta property="og:description" content="模块化就是将复杂的程序按照一定的规范封装成几个块，并组合在一起，模块中的数据与实现是私有的，只向外部暴露一些接口与其他模块通信。能够避免命名冲突、污染全局，可以更好的分离，按需加载，更高的复用性、可移植性等。使以前的难以维护，依然要创建全局变量污染环境、请求过多，加载顺序需要手动管理、依赖模糊得到了很好的解决...">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/img/pageImg1.jpg">
 <meta property="article:published_time" content="2022-09-14T11:22:46.000Z">
-<meta property="article:modified_time" content="2022-09-14T11:25:00.798Z">
+<meta property="article:modified_time" content="2022-09-14T12:28:05.511Z">
 <meta property="article:author" content="John Doe">
+<meta property="article:tag" content="模块化">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://example.com/img/pageImg1.jpg">
   
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
   
   
   <title>前端模块化 - Hexo</title>
@@ -94,7 +99,7 @@
   <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand" href="/">
-      <strong>Fluid</strong>
+      <strong>🧸 CheerioInf</strong>
     </a>
 
     <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
@@ -136,30 +141,6 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/categories/">
-                <i class="iconfont icon-category-fill"></i>
-                分类
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/tags/">
-                <i class="iconfont icon-tags-fill"></i>
-                标签
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
               <a class="nav-link" href="/about/">
                 <i class="iconfont icon-user-fill"></i>
                 关于
@@ -189,7 +170,7 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+     style="background: url('/img/pageImg1.jpg') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
@@ -509,6 +490,13 @@
               <div class="post-metas my-3">
   
   
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E6%A8%A1%E5%9D%97%E5%8C%96/">#模块化</a>
+      
+    </div>
+  
 </div>
 
 
@@ -524,7 +512,7 @@
       
         <div class="license-meta-item">
           <div>作者</div>
-          <div>John Doe</div>
+          <div>cheerioInf</div>
         </div>
       
       
@@ -561,6 +549,12 @@
                 <div class="post-prevnext my-3">
                   <article class="post-prev col-6">
                     
+                    
+                      <a href="/2022/09/14/%E5%8E%9F%E7%94%9FJS%E5%AE%9E%E7%8E%B0%E5%A4%A9%E6%B0%94%E9%A2%84%E6%8A%A5%E6%9F%A5%E8%AF%A2%E7%B3%BB%E7%BB%9F/" title="原生JS实现天气预报查询系统">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">原生JS实现天气预报查询系统</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
                     
                   </article>
                   <article class="post-next col-6">
@@ -661,9 +655,33 @@
     <div class="footer-inner">
   
     <div class="footer-content">
-       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+      到底了～
     </div>
   
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
   
   
   
@@ -810,6 +828,8 @@
   <script>Fluid.plugins.imageCaption();</script>
 
   <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
 
 
 
