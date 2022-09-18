@@ -16,16 +16,16 @@
   <meta name="author" content="cheerioInf">
   <meta name="keywords" content="">
   
-    <meta name="description" content="Weather Query System该项目是我参加学校工作室后的第一次水平考核，也是我学习前端一个月以来完成的第一个较为完整的小项目。故有许多细节实现的不符合预期。借这篇文章复盘一下我的项目完成过程，来为以后更好地完成项目打定基础。 项目整体结构想法作为一个天气预报查询系统，首先我将项目分为查询、反馈两个部分。 查询：需要考虑 查询方式 以及 查询范围 两个方面。方式可以有多种，如输入文字、进">
+    <meta name="description" content="Weather Query System该项目是我参加学校工作室后的第一次水平考核，也是我学习前端一个月以来完成的第一个较为完整的小项目。故有许多细节实现的不符合预期。借这篇文章复盘一下我的项目完成过程，来为以后更好地完成项目打定基础。 🏝 项目整体结构想法作为一个天气预报查询系统，首先我将项目分为查询、反馈两个部分。 查询：需要考虑 查询方式 以及 查询范围 两个方面。方式可以有多种，如输入文">
 <meta property="og:type" content="article">
 <meta property="og:title" content="原生JS实现天气预报查询系统">
 <meta property="og:url" content="http://example.com/2022/09/14/%E5%8E%9F%E7%94%9FJS%E5%AE%9E%E7%8E%B0%E5%A4%A9%E6%B0%94%E9%A2%84%E6%8A%A5%E6%9F%A5%E8%AF%A2%E7%B3%BB%E7%BB%9F/index.html">
 <meta property="og:site_name" content="cheerioInf个人博客">
-<meta property="og:description" content="Weather Query System该项目是我参加学校工作室后的第一次水平考核，也是我学习前端一个月以来完成的第一个较为完整的小项目。故有许多细节实现的不符合预期。借这篇文章复盘一下我的项目完成过程，来为以后更好地完成项目打定基础。 项目整体结构想法作为一个天气预报查询系统，首先我将项目分为查询、反馈两个部分。 查询：需要考虑 查询方式 以及 查询范围 两个方面。方式可以有多种，如输入文字、进">
+<meta property="og:description" content="Weather Query System该项目是我参加学校工作室后的第一次水平考核，也是我学习前端一个月以来完成的第一个较为完整的小项目。故有许多细节实现的不符合预期。借这篇文章复盘一下我的项目完成过程，来为以后更好地完成项目打定基础。 🏝 项目整体结构想法作为一个天气预报查询系统，首先我将项目分为查询、反馈两个部分。 查询：需要考虑 查询方式 以及 查询范围 两个方面。方式可以有多种，如输入文">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/img/pageImg2%E7%9A%84%E5%89%AF%E6%9C%AC.jpeg">
 <meta property="article:published_time" content="2022-09-14T12:29:34.000Z">
-<meta property="article:modified_time" content="2022-09-18T14:17:15.317Z">
+<meta property="article:modified_time" content="2022-09-18T14:20:55.217Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="项目复盘">
 <meta name="twitter:card" content="summary_large_image">
@@ -266,7 +266,7 @@
               <div class="markdown-body">
                 
                 <h1 id="Weather-Query-System"><a href="#Weather-Query-System" class="headerlink" title="Weather Query System"></a>Weather Query System</h1><p>该项目是我参加学校工作室后的第一次水平考核，也是我学习前端一个月以来完成的第一个较为完整的小项目。故有许多细节实现的不符合预期。借这篇文章复盘一下我的项目完成过程，来为以后更好地完成项目打定基础。</p>
-<h2 id="项目整体结构想法"><a href="#项目整体结构想法" class="headerlink" title="项目整体结构想法"></a>项目整体结构想法</h2><p>作为一个天气预报查询系统，首先我将项目分为查询、反馈两个部分。</p>
+<h2 id="🏝-项目整体结构想法"><a href="#🏝-项目整体结构想法" class="headerlink" title="🏝 项目整体结构想法"></a>🏝 项目整体结构想法</h2><p>作为一个天气预报查询系统，首先我将项目分为查询、反馈两个部分。</p>
 <p><strong>查询</strong>：需要考虑 <em>查询方式</em> 以及 <em>查询范围</em> 两个方面。方式可以有多种，如输入文字、进入城市列表选择、在地图上选择区域等。范围分为国内与国外、省与区等方面。但在实际实现过程中，由于技术熟练度和掌握度不高、接口有限等，仅实现了文字查询+国内的省与区范围查询。</p>
 <p><strong>反馈</strong>：需要考虑返回给用户什么内容，在我目前能找到的接口中，总结了以下 4 个方面的反馈：</p>
 <ul>
@@ -275,12 +275,12 @@
 <li>未来七天预测天气。</li>
 <li>生活指数，如运动指数、钓鱼指数等。</li>
 </ul>
-<h2 id="HTML-页面的编写"><a href="#HTML-页面的编写" class="headerlink" title="HTML 页面的编写"></a>HTML 页面的编写</h2><p>首先我将 HTML 界面划分为<code>&lt;header&gt;</code>、<code>&lt;search&gt;</code>、<code>&lt;information&gt;</code>、<code>&lt;footer&gt;</code>、<code>&lt;toasts&gt;</code>五大板块。</p>
+<h2 id="☎️-HTML-页面的编写"><a href="#☎️-HTML-页面的编写" class="headerlink" title="☎️ HTML 页面的编写"></a>☎️ HTML 页面的编写</h2><p>首先我将 HTML 界面划分为<code>&lt;header&gt;</code>、<code>&lt;search&gt;</code>、<code>&lt;information&gt;</code>、<code>&lt;footer&gt;</code>、<code>&lt;toasts&gt;</code>五大板块。</p>
 <p><code>&lt;header&gt;</code>用来编写悬浮导航栏，包含<code>&lt;title&gt;</code>和<code>&lt;top&gt;</code>两个小板块，分别是 Weather Query System 的文字图标和返回顶部的按钮。</p>
 <p><code>&lt;search&gt;</code>是搜索模块，包括<code>&lt;search-title&gt;</code>和<code>search-box</code>两个小板块，分别为 Weather Query System 的标题、搜索框。搜索框又包含<code>&lt;input&gt;</code>和<code>&lt;button&gt;</code>。</p>
 <p><code>&lt;information&gt;</code>是反馈给用户信息的界面，包含上面‘反馈’部分提到的各个功能板块。</p>
 <p><code>&lt;footer&gt;</code>为页底部分，反馈给用户我的数据来源网站。</p>
-<h2 id="CSS-以及动画的编写"><a href="#CSS-以及动画的编写" class="headerlink" title="CSS 以及动画的编写"></a>CSS 以及动画的编写</h2><h3 id="header"><a href="#header" class="headerlink" title="header"></a>header</h3><p><code>&lt;header&gt;</code>板块 <em>一直固定</em> 在页面 <em>最上面</em> ，故需要我们给它设置<code>position</code>属性为<code>fixed</code>、<code>top</code>属性值为 0。其次为了防止被之后编写的板块覆盖，需要给它的<code>z-index</code>属性设置足够大的高度。</p>
+<h2 id="🧭-CSS-以及动画的编写"><a href="#🧭-CSS-以及动画的编写" class="headerlink" title="🧭 CSS 以及动画的编写"></a>🧭 CSS 以及动画的编写</h2><h3 id="header"><a href="#header" class="headerlink" title="header"></a>header</h3><p><code>&lt;header&gt;</code>板块 <em>一直固定</em> 在页面 <em>最上面</em> ，故需要我们给它设置<code>position</code>属性为<code>fixed</code>、<code>top</code>属性值为 0。其次为了防止被之后编写的板块覆盖，需要给它的<code>z-index</code>属性设置足够大的高度。</p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-comment">/*=========导航栏部分编写==========*/</span><br><span class="hljs-selector-class">.header</span> &#123;<br>  <span class="hljs-attribute">position</span>: fixed;<br>  <span class="hljs-attribute">top</span>: <span class="hljs-number">0</span>;<br>  <span class="hljs-attribute">z-index</span>: <span class="hljs-number">999</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <h3 id="search-title"><a href="#search-title" class="headerlink" title="search-title"></a>search-title</h3><p>单纯的静态 title 有点无聊，因此我想添加 <em>自动打字效果</em> 来在用户进入界面后，通过动画展现出来。</p>
@@ -307,7 +307,7 @@
 <p><strong>top 按钮返回到顶部</strong>:</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">//===========================回到顶部===========================</span><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">toTop</span>(<span class="hljs-params"></span>) &#123;<br>  <span class="hljs-title function_">loop</span>()<br>  <span class="hljs-keyword">var</span> top,<br>    stop = <span class="hljs-literal">false</span><br><br>  <span class="hljs-keyword">function</span> <span class="hljs-title function_">loop</span>(<span class="hljs-params"></span>) &#123;<br>    <span class="hljs-keyword">if</span> (top &lt; <span class="hljs-number">1</span> || stop) &#123;<br>      <span class="hljs-keyword">if</span> (!stop) <span class="hljs-variable language_">document</span>.<span class="hljs-property">documentElement</span>.<span class="hljs-property">scrollTop</span> = <span class="hljs-number">0</span><br>      <span class="hljs-keyword">return</span><br>    &#125;<br>    top = <span class="hljs-variable language_">document</span>.<span class="hljs-property">documentElement</span>.<span class="hljs-property">scrollTop</span><br>    <span class="hljs-variable language_">document</span>.<span class="hljs-property">documentElement</span>.<span class="hljs-property">scrollTop</span> = top * <span class="hljs-number">0.9</span><br>    <span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">() =&gt;</span> &#123;<br>      <span class="hljs-title function_">loop</span>()<br>    &#125;, <span class="hljs-number">15</span>)<br>  &#125;<br>  <span class="hljs-variable language_">document</span>.<span class="hljs-property">onscroll</span> = <span class="hljs-keyword">function</span> (<span class="hljs-params">e</span>) &#123;<br>    <span class="hljs-keyword">if</span> (top &lt; <span class="hljs-variable language_">document</span>.<span class="hljs-property">documentElement</span>.<span class="hljs-property">scrollTop</span>) &#123;<br>      stop = <span class="hljs-literal">true</span><br>    &#125;<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
-<h2 id="JS-的编写"><a href="#JS-的编写" class="headerlink" title="JS 的编写"></a>JS 的编写</h2><h3 id="获取数据"><a href="#获取数据" class="headerlink" title="获取数据"></a>获取数据</h3><p>将查询按钮绑定<code>click</code>事件，并绑定函数<code>search()</code>，将 search()设置为<code>async</code>函数，在内部运用<code>await</code>调用<code>fetch()</code>来获得数据。</p>
+<h2 id="🧯-JS-的编写"><a href="#🧯-JS-的编写" class="headerlink" title="🧯 JS 的编写"></a>🧯 JS 的编写</h2><h3 id="获取数据"><a href="#获取数据" class="headerlink" title="获取数据"></a>获取数据</h3><p>将查询按钮绑定<code>click</code>事件，并绑定函数<code>search()</code>，将 search()设置为<code>async</code>函数，在内部运用<code>await</code>调用<code>fetch()</code>来获得数据。</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">async</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">search</span>(<span class="hljs-params"></span>) &#123;<br>  <span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> <span class="hljs-title function_">fetch</span>(<span class="hljs-string">&#x27;接口&#x27;</span>),<br>    data = <span class="hljs-keyword">await</span> res.<span class="hljs-title function_">json</span>()<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p>当数据以组的形式出现时，我们可以用 document.querySelectorAll()的方法获取某个节点下的全部子节点，最后运用循环的方式将数据写入节点，如下面的代码。</p>
