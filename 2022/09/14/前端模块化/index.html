@@ -1,271 +1,149 @@
-
-
-<!DOCTYPE html>
-<html lang="zh-CN" data-default-color-scheme=light>
-
-
-
-<head>
-  <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.jpg">
-  <link rel="icon" href="/img/fluid.jpg">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
-  <meta http-equiv="x-ua-compatible" content="ie=edge">
-  
-  <meta name="theme-color" content="#2f4154">
-  <meta name="author" content="cheerioInf">
-  <meta name="keywords" content="">
-  
-    <meta name="description" content="模块化就是将复杂的程序按照一定的规范封装成几个块，并组合在一起，模块中的数据与实现是私有的，只向外部暴露一些接口与其他模块通信。能够避免命名冲突、污染全局，可以更好的分离，按需加载，更高的复用性、可移植性等。使以前的难以维护，依然要创建全局变量污染环境、请求过多，加载顺序需要手动管理、依赖模糊得到了很好的解决...">
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>前端模块化 | cheerioInf个人博客</title><meta name="keywords" content="模块化"><meta name="author" content="John Doe"><meta name="copyright" content="John Doe"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="ffffff"><meta name="description" content="模块化就是将复杂的程序按照一定的规范封装成几个块，并组合在一起，模块中的数据与实现是私有的，只向外部暴露一些接口与其他模块通信。能够避免命名冲突、污染全局，可以更好的分离，按需加载，更高的复用性、可移植性等。使以前的难以维护，依然要创建全局变量污染环境、请求过多，加载顺序需要手动管理、依赖模糊得到了很好的解决...">
 <meta property="og:type" content="article">
 <meta property="og:title" content="前端模块化">
 <meta property="og:url" content="http://example.com/2022/09/14/%E5%89%8D%E7%AB%AF%E6%A8%A1%E5%9D%97%E5%8C%96/index.html">
 <meta property="og:site_name" content="cheerioInf个人博客">
 <meta property="og:description" content="模块化就是将复杂的程序按照一定的规范封装成几个块，并组合在一起，模块中的数据与实现是私有的，只向外部暴露一些接口与其他模块通信。能够避免命名冲突、污染全局，可以更好的分离，按需加载，更高的复用性、可移植性等。使以前的难以维护，依然要创建全局变量污染环境、请求过多，加载顺序需要手动管理、依赖模糊得到了很好的解决...">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://example.com/img/pageImg1%E7%9A%84%E5%89%AF%E6%9C%AC.jpeg">
+<meta property="og:image" content="http://example.com/linear-gradient(120deg,%20#d4fc79%200%,%20#96e6a1%20100%)">
 <meta property="article:published_time" content="2022-09-14T11:22:46.000Z">
-<meta property="article:modified_time" content="2022-09-18T14:17:17.292Z">
+<meta property="article:modified_time" content="2022-09-19T17:10:54.724Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="模块化">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://example.com/img/pageImg1%E7%9A%84%E5%89%AF%E6%9C%AC.jpeg">
-  
-  
-    <meta name="referrer" content="no-referrer-when-downgrade">
-  
-  
-  <title>前端模块化 - cheerioInf个人博客</title>
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
-
-
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
-
-
-
-<!-- 主题依赖的图标库，不要自行修改 -->
-<!-- Do not modify the link that theme dependent icons -->
-
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
-
-
-
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
-
-
-<link  rel="stylesheet" href="/css/main.css" />
-
-
-  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
-  
-    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
-  
-
-
-
-
-  <script id="fluid-configs">
-    var Fluid = window.Fluid || {};
-    Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":["home"]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
-
-    if (CONFIG.web_analytics.follow_dnt) {
-      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
-      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/linear-gradient(120deg,%20#d4fc79%200%,%20#96e6a1%20100%)"><link rel="shortcut icon" href="/img/favicon.jpg"><link rel="canonical" href="http://example.com/2022/09/14/%E5%89%8D%E7%AB%AF%E6%A8%A1%E5%9D%97%E5%8C%96/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
     }
-  </script>
-  <script  src="/js/utils.js" ></script>
-  <script  src="/js/color-schema.js" ></script>
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: ture
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '前端模块化',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-09-20 01:10:54'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
   
-
-
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
   
-<meta name="generator" content="Hexo 6.3.0"></head>
-
-
-<body>
-  
-
-  <header>
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
     
-
-<div class="header-inner" style="height: 70vh;">
-  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
-  <div class="container">
-    <a class="navbar-brand" href="/">
-      <strong>🧸 CheerioInf</strong>
-    </a>
-
-    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
-            data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <div class="animated-icon"><span></span><span></span><span></span></div>
-    </button>
-
-    <!-- Collapsible content -->
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav ml-auto text-center">
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
         
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/">
-                <i class="iconfont icon-home-fill"></i>
-                首页
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/archives/">
-                <i class="iconfont icon-archive-fill"></i>
-                归档
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/tags/">
-                <i class="iconfont icon-tags-fill"></i>
-                标签
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/about/">
-                <i class="iconfont icon-user-fill"></i>
-                关于
-              </a>
-            </li>
-          
-        
-        
-          <li class="nav-item" id="search-btn">
-            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
-              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
-            </a>
-          </li>
-          
-        
-        
-          <li class="nav-item" id="color-toggle-btn">
-            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
-                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-</nav>
-
-  
-
-<div id="banner" class="banner" parallax=true
-     style="background: url('/img/pageImg1.jpeg') no-repeat center center; background-size: cover;">
-  <div class="full-bg-img">
-    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
-      <div class="banner-text text-center fade-in-up">
-        <div class="h2">
-          
-            <span id="subtitle">前端模块化</span>
-          
-        </div>
-
-        
-          
-  <div class="mt-3">
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
     
-    
-      <span class="post-meta">
-        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2022-09-14 19:22" pubdate>
-          2022年9月14日 晚上
-        </time>
-      </span>
-    
-  </div>
-
-  <div class="mt-1">
-    
-      <span class="post-meta mr-2">
-        <i class="iconfont icon-chart"></i>
-        
-          9.7k 字
-        
-      </span>
-    
-
-    
-      <span class="post-meta mr-2">
-        <i class="iconfont icon-clock-fill"></i>
-        
-        
-        
-          81 分钟
-        
-      </span>
-    
-
-    
-    
-  </div>
-
-
-        
-      </div>
-
-      
-    </div>
-  </div>
-</div>
-
-</div>
-
-  </header>
-
-  <main>
-    
-      
-
-<div class="container-fluid nopadding-x">
-  <div class="row nomargin-x">
-    <div class="side-col d-none d-lg-block col-lg-2">
-      
-
-    </div>
-
-    <div class="col-lg-8 nopadding-x-md">
-      <div class="container nopadding-x-md" id="board-ctn">
-        <div id="board">
-          <article class="post-content mx-auto">
-            <!-- SEO header -->
-            <h1 style="display: none">前端模块化</h1>
-            
-            
-              <div class="markdown-body">
-                
-                <h2 id="❓-什么是模块化"><a href="#❓-什么是模块化" class="headerlink" title="❓ 什么是模块化"></a>❓ 什么是模块化</h2><p>将复杂的程序按照一定的规范封装成几个块，并组合在一起，模块中的<strong>数据与实现是私有的</strong>，只向外部<strong>暴露一些接口</strong>与其他模块通信。</p>
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="cheerioInf个人博客" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/favicon.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">3</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">3</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> HOME 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> ARCHIVES 档案</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> TAGS 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> CATEGORIES 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> More</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></li><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About me</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background: linear-gradient(120deg, #d4fc79 0%, #96e6a1 100%)"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">cheerioInf个人博客</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> HOME 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> ARCHIVES 档案</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> TAGS 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> CATEGORIES 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> More</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></li><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About me</span></a></li></ul></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">前端模块化<a class="post-edit-link" href="null_posts/前端模块化.md" title="编辑" target="_blank"><i class="fas fa-pencil-alt"></i></a></h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-09-14T11:22:46.000Z" title="发表于 2022-09-14 19:22:46">2022-09-14</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-09-19T17:10:54.724Z" title="更新于 2022-09-20 01:10:54">2022-09-20</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="前端模块化"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="❓-什么是模块化"><a href="#❓-什么是模块化" class="headerlink" title="❓ 什么是模块化"></a>❓ 什么是模块化</h2><p>将复杂的程序按照一定的规范封装成几个块，并组合在一起，模块中的<strong>数据与实现是私有的</strong>，只向外部<strong>暴露一些接口</strong>与其他模块通信。</p>
 <h2 id="🚀-模块化的好处"><a href="#🚀-模块化的好处" class="headerlink" title="🚀 模块化的好处"></a>🚀 模块化的好处</h2><ul>
 <li>避免命名冲突、污染全局</li>
 <li>可以更好的分离，按需加载</li>
@@ -277,29 +155,29 @@
 <li>编码: 将不同的功能封装成不同的全局函数。</li>
 <li>问题: 污染全局命名空间, 容易引起命名冲突或数据不安全，而且模块成员之间看不出直接关系。</li>
 </ul>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">f1</span>(<span class="hljs-params"></span>) &#123;<br>  <span class="hljs-comment">//...</span><br>&#125;<br><span class="hljs-keyword">function</span> <span class="hljs-title function_">f2</span>(<span class="hljs-params"></span>) &#123;<br>  <span class="hljs-comment">//...</span><br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">f1</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="comment">//...</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">f2</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="comment">//...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 <li><p><strong><code>namespace</code> 模式</strong></p>
 <ul>
 <li>编码: 简单对象封装。</li>
 <li>问题: 数据不安全(外部可以直接修改模块内部的数据)。</li>
 </ul>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">var</span> myModule = &#123;<br>  <span class="hljs-attr">data</span>: <span class="hljs-string">&#x27;www.baidu.com&#x27;</span>,<br>  <span class="hljs-title function_">foo</span>(<span class="hljs-params"></span>) &#123;<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">`foo() <span class="hljs-subst">$&#123;<span class="hljs-variable language_">this</span>.data&#125;</span>`</span>)<br>  &#125;,<br>&#125;<br>myModule.<span class="hljs-property">data</span> = <span class="hljs-string">&#x27;other data&#x27;</span> <span class="hljs-comment">//能直接修改模块内部的数据</span><br>myModule.<span class="hljs-title function_">foo</span>() <span class="hljs-comment">// foo() other data</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> myModule = &#123;</span><br><span class="line">  <span class="attr">data</span>: <span class="string">&#x27;www.baidu.com&#x27;</span>,</span><br><span class="line">  <span class="title function_">foo</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`foo() <span class="subst">$&#123;<span class="variable language_">this</span>.data&#125;</span>`</span>)</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;</span><br><span class="line">myModule.<span class="property">data</span> = <span class="string">&#x27;other data&#x27;</span> <span class="comment">//能直接修改模块内部的数据</span></span><br><span class="line">myModule.<span class="title function_">foo</span>() <span class="comment">// foo() other data</span></span><br></pre></td></tr></table></figure>
 </li>
 <li><p><strong>基于对象用单例模式思想解决</strong></p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">var</span> myModule = (<span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;<br>  <span class="hljs-keyword">var</span> someThing = <span class="hljs-string">&#x27;123&#x27;</span><br>  <span class="hljs-keyword">var</span> otherThing = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>]<br><br>  <span class="hljs-keyword">function</span> <span class="hljs-title function_">doSomeThing</span>(<span class="hljs-params"></span>) &#123;<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(someThing)<br>  &#125;<br><br>  <span class="hljs-keyword">return</span> &#123; doSomeThing &#125;<br>&#125;)()<br><br>myModule.<span class="hljs-title function_">doSomeThing</span>()<br></code></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> myModule = (<span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">var</span> someThing = <span class="string">&#x27;123&#x27;</span></span><br><span class="line">  <span class="keyword">var</span> otherThing = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br><span class="line"></span><br><span class="line">  <span class="keyword">function</span> <span class="title function_">doSomeThing</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(someThing)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> &#123; doSomeThing &#125;</span><br><span class="line">&#125;)()</span><br><span class="line"></span><br><span class="line">myModule.<span class="title function_">doSomeThing</span>()</span><br></pre></td></tr></table></figure>
 </li>
 <li><p><strong>匿名函数自调用通过闭包解决(IIFE)</strong></p>
 <ul>
 <li>作用: 数据是私有的, 外部只能通过暴露的方法操作</li>
 <li>编码: 将数据和行为封装到一个函数内部, 通过给 window 添加属性来向外暴露接口</li>
 </ul>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs js">;(<span class="hljs-keyword">function</span> (<span class="hljs-params">win</span>) &#123;<br>  <span class="hljs-keyword">function</span> <span class="hljs-title function_">aFn</span>(<span class="hljs-params"></span>) &#123;&#125;<br>  <span class="hljs-keyword">function</span> <span class="hljs-title function_">bFn</span>(<span class="hljs-params"></span>) &#123;&#125;<br>  win.<span class="hljs-property">myMethod</span> = &#123; aFn, bFn &#125;<br>&#125;)(<span class="hljs-variable language_">window</span>)<br></code></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">;(<span class="keyword">function</span> (<span class="params">win</span>) &#123;</span><br><span class="line">  <span class="keyword">function</span> <span class="title function_">aFn</span>(<span class="params"></span>) &#123;&#125;</span><br><span class="line">  <span class="keyword">function</span> <span class="title function_">bFn</span>(<span class="params"></span>) &#123;&#125;</span><br><span class="line">  win.<span class="property">myMethod</span> = &#123; aFn, bFn &#125;</span><br><span class="line">&#125;)(<span class="variable language_">window</span>)</span><br></pre></td></tr></table></figure>
 
 <ul>
 <li>问题: 如果当前这个模块依赖另一个模块怎么办?</li>
 </ul>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">// 引入依赖</span><br>;(<span class="hljs-keyword">function</span> (<span class="hljs-params"><span class="hljs-variable language_">window</span>, $</span>) &#123;<br>  <span class="hljs-keyword">let</span> data = <span class="hljs-string">&#x27;www.baidu.com&#x27;</span><br>  <span class="hljs-keyword">function</span> <span class="hljs-title function_">foo</span>(<span class="hljs-params"></span>) &#123;<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">`foo() <span class="hljs-subst">$&#123;data&#125;</span>`</span>)<br>    $(<span class="hljs-string">&#x27;body&#x27;</span>).<span class="hljs-title function_">css</span>(<span class="hljs-string">&#x27;background&#x27;</span>, <span class="hljs-string">&#x27;red&#x27;</span>)<br>  &#125;<br>  <span class="hljs-keyword">function</span> <span class="hljs-title function_">bar</span>(<span class="hljs-params"></span>) &#123;<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">`bar() <span class="hljs-subst">$&#123;data&#125;</span>`</span>)<br>    <span class="hljs-title function_">otherFun</span>()<br>  &#125;<br>  <span class="hljs-keyword">function</span> <span class="hljs-title function_">otherFun</span>(<span class="hljs-params"></span>) &#123;<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;otherFun()&#x27;</span>)<br>  &#125;<br>  <span class="hljs-variable language_">window</span>.<span class="hljs-property">myModule</span> = &#123; foo, bar &#125;<br>&#125;)(<span class="hljs-variable language_">window</span>, jQuery)<br></code></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 引入依赖</span></span><br><span class="line">;(<span class="keyword">function</span> (<span class="params"><span class="variable language_">window</span>, $</span>) &#123;</span><br><span class="line">  <span class="keyword">let</span> data = <span class="string">&#x27;www.baidu.com&#x27;</span></span><br><span class="line">  <span class="keyword">function</span> <span class="title function_">foo</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`foo() <span class="subst">$&#123;data&#125;</span>`</span>)</span><br><span class="line">    $(<span class="string">&#x27;body&#x27;</span>).<span class="title function_">css</span>(<span class="string">&#x27;background&#x27;</span>, <span class="string">&#x27;red&#x27;</span>)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">function</span> <span class="title function_">bar</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`bar() <span class="subst">$&#123;data&#125;</span>`</span>)</span><br><span class="line">    <span class="title function_">otherFun</span>()</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">function</span> <span class="title function_">otherFun</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;otherFun()&#x27;</span>)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="variable language_">window</span>.<span class="property">myModule</span> = &#123; foo, bar &#125;</span><br><span class="line">&#125;)(<span class="variable language_">window</span>, jQuery)</span><br></pre></td></tr></table></figure>
 
 <ul>
 <li>难以维护，依然要创建全局变量污染环境</li>
@@ -319,22 +197,22 @@
 <li>模块加载的顺序，按照其在代码中出现的顺序。</li>
 </ul>
 <p>CommonJS 模块是一个对象，它的 exports 属性（即 module.exports）是对外的接口。<strong>加载某个模块，其实是加载该模块的 module.exports 属性</strong>。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">var</span> x = <span class="hljs-number">5</span><br><span class="hljs-keyword">var</span> addX = <span class="hljs-keyword">function</span> (<span class="hljs-params">value</span>) &#123;<br>  <span class="hljs-keyword">return</span> value + x<br>&#125;<br><span class="hljs-variable language_">module</span>.<span class="hljs-property">exports</span>.<span class="hljs-property">x</span> = x<br><span class="hljs-variable language_">module</span>.<span class="hljs-property">exports</span>.<span class="hljs-property">addX</span> = addX<br></code></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> x = <span class="number">5</span></span><br><span class="line"><span class="keyword">var</span> addX = <span class="keyword">function</span> (<span class="params">value</span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> value + x</span><br><span class="line">&#125;</span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span>.<span class="property">x</span> = x</span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span>.<span class="property">addX</span> = addX</span><br></pre></td></tr></table></figure>
 
-<figure class="highlight arcade"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs arcade"><span class="hljs-keyword">var</span> example = require(<span class="hljs-string">&#x27;./example.js&#x27;</span>);<br><span class="hljs-built_in">console</span>.<span class="hljs-built_in">log</span>(example.x); <span class="hljs-comment">// 5</span><br><span class="hljs-built_in">console</span>.<span class="hljs-built_in">log</span>(example.addX(<span class="hljs-number">1</span>)); <span class="hljs-comment">// 6</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var example = require(&#x27;./example.js&#x27;);</span><br><span class="line">console.log(example.x); // 5</span><br><span class="line">console.log(example.addX(1)); // 6</span><br></pre></td></tr></table></figure>
 
 <p><strong>在浏览器中运行 CommonJS</strong>：使用 browserify。</p>
 <p><em>Tip: <strong>CommonJS 模块的加载机制是，输入的是被输出的值的拷贝。也就是说，一旦输出一个值，模块内部的变化就影响不到这个值</strong>。模块只会在第一次加载时运行一次，然后运行结果就被缓存，之后加载会直接读取缓存的结果，想要模块再次运行就必须先清除缓存。</em></p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">// test.js</span><br><span class="hljs-keyword">let</span> counter = <span class="hljs-number">3</span><br><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">incCounter</span>(<span class="hljs-params"></span>) &#123;<br>  counter++<br>&#125;<br><br><span class="hljs-variable language_">module</span>.<span class="hljs-property">exports</span> = &#123;<br>  counter,<br>  incCounter,<br>&#125;<br><br><span class="hljs-comment">// main.js</span><br><span class="hljs-keyword">const</span> test1 = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;./test1.js&#x27;</span>)<br><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(test1.<span class="hljs-property">counter</span>) <span class="hljs-comment">// 3</span><br>test1.<span class="hljs-title function_">incCounter</span>()<br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(test1.<span class="hljs-property">counter</span>) <span class="hljs-comment">// 3，未清除缓存</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// test.js</span></span><br><span class="line"><span class="keyword">let</span> counter = <span class="number">3</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">incCounter</span>(<span class="params"></span>) &#123;</span><br><span class="line">  counter++</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = &#123;</span><br><span class="line">  counter,</span><br><span class="line">  incCounter,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// main.js</span></span><br><span class="line"><span class="keyword">const</span> test1 = <span class="built_in">require</span>(<span class="string">&#x27;./test1.js&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(test1.<span class="property">counter</span>) <span class="comment">// 3</span></span><br><span class="line">test1.<span class="title function_">incCounter</span>()</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(test1.<span class="property">counter</span>) <span class="comment">// 3，未清除缓存</span></span><br></pre></td></tr></table></figure>
 
 <p><code>test.js</code>模块加载以后，它的内部变化就影响不到输出的<code>test.counter</code>了。这是因为<code>test.counter</code>是一个原始类型的值，会被缓存。</p>
 <p>除非写成一个函数，才能得到内部变动后的值。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">// test.js</span><br><span class="hljs-keyword">var</span> counter = <span class="hljs-number">3</span><br><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">incCounter</span>(<span class="hljs-params"></span>) &#123;<br>  counter++<br>&#125;<br><br><span class="hljs-variable language_">module</span>.<span class="hljs-property">exports</span> = &#123;<br>  <span class="hljs-comment">// 写成一个函数</span><br>  <span class="hljs-keyword">get</span> <span class="hljs-title function_">counter</span>() &#123;<br>    <span class="hljs-keyword">return</span> counter<br>  &#125;,<br>  incCounter,<br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// test.js</span></span><br><span class="line"><span class="keyword">var</span> counter = <span class="number">3</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">incCounter</span>(<span class="params"></span>) &#123;</span><br><span class="line">  counter++</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = &#123;</span><br><span class="line">  <span class="comment">// 写成一个函数</span></span><br><span class="line">  <span class="keyword">get</span> <span class="title function_">counter</span>() &#123;</span><br><span class="line">    <span class="keyword">return</span> counter</span><br><span class="line">  &#125;,</span><br><span class="line">  incCounter,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 <li><p><strong>AMD</strong> (异步模块加载)</p>
 <p>由于 Node.js 主要用于服务器编程，模块文件一般都已经存在于本地硬盘，所以加载起来比较快，不用考虑非同步加载的方式，所以 CommonJS 规范比较适用。但是，<strong>如果是浏览器环境，要从服务器端加载模块，这时就必须采用非同步模式，因此浏览器端一般采用 AMD 规范</strong>。此外 AMD 规范比 CommonJS 规范在浏览器端实现要来得早。</p>
 <p>RequireJS 是一个遵守 AMD 规范的工具库，可以通过<code>define</code>的方法将代码定义为模块，通过<code>require()</code>的方法实现模块的引用。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">//定义没有依赖的模块</span><br><span class="hljs-title function_">define</span>(<span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;<br>  <span class="hljs-keyword">return</span> 模块<br>&#125;)<br><br><span class="hljs-comment">//定义有依赖的模块</span><br><span class="hljs-title function_">define</span>([<span class="hljs-string">&#x27;module1&#x27;</span>, <span class="hljs-string">&#x27;module2&#x27;</span>], <span class="hljs-keyword">function</span> (<span class="hljs-params">m1, m2</span>) &#123;<br>  <span class="hljs-keyword">return</span> 模块<br>&#125;)<br><br><span class="hljs-comment">//引入模块</span><br><span class="hljs-built_in">require</span>([<span class="hljs-string">&#x27;module1&#x27;</span>, <span class="hljs-string">&#x27;module2&#x27;</span>], <span class="hljs-keyword">function</span> (<span class="hljs-params">m1, m2</span>) &#123;<br>  使用m1 / m2<br>&#125;)<br></code></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//定义没有依赖的模块</span></span><br><span class="line"><span class="title function_">define</span>(<span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> 模块</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">//定义有依赖的模块</span></span><br><span class="line"><span class="title function_">define</span>([<span class="string">&#x27;module1&#x27;</span>, <span class="string">&#x27;module2&#x27;</span>], <span class="keyword">function</span> (<span class="params">m1, m2</span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> 模块</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">//引入模块</span></span><br><span class="line"><span class="built_in">require</span>([<span class="string">&#x27;module1&#x27;</span>, <span class="string">&#x27;module2&#x27;</span>], <span class="keyword">function</span> (<span class="params">m1, m2</span>) &#123;</span><br><span class="line">  使用m1 / m2</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 </li>
 <li><p><strong>ES6 模块</strong> (异步模块加载)</p>
 <p>ES6 模块的设计思想是尽量的<strong>静态化</strong>，使得编译时就能确定模块的依赖关系，以及输入和输出的变量。</p>
@@ -348,7 +226,7 @@
 <li><strong>CommonJS 模块是运行时加载，ES6 模块是编译时输出接口</strong>。</li>
 <li>CommonJS 模块的<code>require()</code>是同步加载模块，ES6 模块的<code>import</code>命令是异步加载。</li>
 </ol>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">// test.js</span><br><span class="hljs-keyword">var</span> counter = <span class="hljs-number">3</span><br><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">incCounter</span>(<span class="hljs-params"></span>) &#123;<br>  counter++<br>&#125;<br><br><span class="hljs-keyword">export</span> &#123; counter, incCounter &#125;<br><br><span class="hljs-comment">// main.js</span><br><span class="hljs-keyword">import</span> &#123; incCounter, counter &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./test.js&#x27;</span><br><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(counter) <span class="hljs-comment">// 3</span><br><span class="hljs-comment">// 给导入变量赋值会报错</span><br><span class="hljs-comment">// counter = 4 //Assignment to constant variable.</span><br><span class="hljs-title function_">incCounter</span>()<br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(counter) <span class="hljs-comment">// 4</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// test.js</span></span><br><span class="line"><span class="keyword">var</span> counter = <span class="number">3</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">incCounter</span>(<span class="params"></span>) &#123;</span><br><span class="line">  counter++</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> &#123; counter, incCounter &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// main.js</span></span><br><span class="line"><span class="keyword">import</span> &#123; incCounter, counter &#125; <span class="keyword">from</span> <span class="string">&#x27;./test.js&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(counter) <span class="comment">// 3</span></span><br><span class="line"><span class="comment">// 给导入变量赋值会报错</span></span><br><span class="line"><span class="comment">// counter = 4 //Assignment to constant variable.</span></span><br><span class="line"><span class="title function_">incCounter</span>()</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(counter) <span class="comment">// 4</span></span><br></pre></td></tr></table></figure>
 
 <h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><ul>
 <li>CommonJS 规范主要用于服务端编程，加载模块是同步的，这并不适合在浏览器环境，因为同步意味着阻塞加载，浏览器资源是异步加载的，因此有了 AMD、CMD 解决方案。</li>
@@ -375,15 +253,15 @@
 </li>
 <li><p><code>loader</code> 预处理器</p>
 <p>webpack 原则上只能处理<code>js</code>、<code>json</code>文件，而<code>loader</code>可以使 webpack 识别处理其他文件并转化为模块。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">// 使用css-loader来处理css</span><br>npn install css-loader -D<br><br><span class="hljs-keyword">const</span> path = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;path&#x27;</span>)<br><br><span class="hljs-variable language_">module</span>.<span class="hljs-property">exports</span> = &#123;<br>  <span class="hljs-attr">mode</span>: <span class="hljs-string">&#x27;development&#x27;</span>, <span class="hljs-comment">// 模式</span><br>  <span class="hljs-attr">entry</span>: <span class="hljs-string">&#x27;./src/main.css&#x27;</span>, <span class="hljs-comment">// 打包入口地址</span><br>  <span class="hljs-attr">output</span>: &#123;<br>    <span class="hljs-attr">filename</span>: <span class="hljs-string">&#x27;bundle.css&#x27;</span>, <span class="hljs-comment">// 输出文件名</span><br>    <span class="hljs-attr">path</span>: path.<span class="hljs-title function_">join</span>(__dirname, <span class="hljs-string">&#x27;dist&#x27;</span>) <span class="hljs-comment">// 输出文件目录</span><br>  &#125;,<br>  <span class="hljs-attr">module</span>: &#123;<br>    <span class="hljs-attr">rules</span>: [ <span class="hljs-comment">// 转换规则</span><br>      &#123;<br>        <span class="hljs-attr">test</span>: <span class="hljs-regexp">/\.css$/</span>, <span class="hljs-comment">//匹配所有的 css 文件</span><br>        <span class="hljs-attr">use</span>: <span class="hljs-string">&#x27;css-loader&#x27;</span> <span class="hljs-comment">// use: 对应的 Loader 名称</span><br>      &#125;<br>    ]<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 使用css-loader来处理css</span></span><br><span class="line">npn install css-loader -D</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">&#x27;path&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = &#123;</span><br><span class="line">  <span class="attr">mode</span>: <span class="string">&#x27;development&#x27;</span>, <span class="comment">// 模式</span></span><br><span class="line">  <span class="attr">entry</span>: <span class="string">&#x27;./src/main.css&#x27;</span>, <span class="comment">// 打包入口地址</span></span><br><span class="line">  <span class="attr">output</span>: &#123;</span><br><span class="line">    <span class="attr">filename</span>: <span class="string">&#x27;bundle.css&#x27;</span>, <span class="comment">// 输出文件名</span></span><br><span class="line">    <span class="attr">path</span>: path.<span class="title function_">join</span>(__dirname, <span class="string">&#x27;dist&#x27;</span>) <span class="comment">// 输出文件目录</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">module</span>: &#123;</span><br><span class="line">    <span class="attr">rules</span>: [ <span class="comment">// 转换规则</span></span><br><span class="line">      &#123;</span><br><span class="line">        <span class="attr">test</span>: <span class="regexp">/\.css$/</span>, <span class="comment">//匹配所有的 css 文件</span></span><br><span class="line">        <span class="attr">use</span>: <span class="string">&#x27;css-loader&#x27;</span> <span class="comment">// use: 对应的 Loader 名称</span></span><br><span class="line">      &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 <li><p><code>plugin</code>插件</p>
 <p>与 <code>loader</code> 用于转换特定类型的文件不同，<strong>插件（Plugin）可以贯穿 Webpack 打包的生命周期，执行不同的任务</strong>，是针对整个打包流程的插件处理（打包优化、资源管理、注入环境变量）</p>
 <p>如果我想打包后的资源文件，例如：js 或者 css 文件可以自动引入到 Html 中，就需要使用插件<code>html-webpack-plugin</code>来帮助你完成这个操作</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs js">npm install html-webpack-plugin -D<br><br><span class="hljs-keyword">const</span> path = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;path&#x27;</span>)<br><span class="hljs-keyword">const</span> <span class="hljs-title class_">HtmlWebpackPlugin</span> = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;html-webpack-plugin&#x27;</span>)<br><br><span class="hljs-variable language_">module</span>.<span class="hljs-property">exports</span> = &#123;<br>  <span class="hljs-attr">mode</span>: <span class="hljs-string">&#x27;development&#x27;</span>, <span class="hljs-comment">// 模式</span><br>  <span class="hljs-attr">entry</span>: <span class="hljs-string">&#x27;./src/index.js&#x27;</span>, <span class="hljs-comment">// 打包入口地址</span><br>  <span class="hljs-attr">output</span>: &#123;<br>    <span class="hljs-attr">filename</span>: <span class="hljs-string">&#x27;bundle.js&#x27;</span>, <span class="hljs-comment">// 输出文件名</span><br>    <span class="hljs-attr">path</span>: path.<span class="hljs-title function_">join</span>(__dirname, <span class="hljs-string">&#x27;dist&#x27;</span>) <span class="hljs-comment">// 输出文件目录</span><br>  &#125;,<br>  <span class="hljs-attr">module</span>: &#123;<br>    <span class="hljs-attr">rules</span>: [<br>      &#123;<br>        <span class="hljs-attr">test</span>: <span class="hljs-regexp">/\.css$/</span>, <span class="hljs-comment">//匹配所有的 css 文件</span><br>        <span class="hljs-attr">use</span>: <span class="hljs-string">&#x27;css-loader&#x27;</span> <span class="hljs-comment">// use: 对应的 Loader 名称</span><br>      &#125;<br>    ]<br>  &#125;,<br>  <span class="hljs-attr">plugins</span>:[ <span class="hljs-comment">// 配置插件</span><br>    <span class="hljs-keyword">new</span> <span class="hljs-title class_">HtmlWebpackPlugin</span>(&#123;<br>      <span class="hljs-attr">template</span>: <span class="hljs-string">&#x27;./src/index.html&#x27;</span><br>    &#125;)<br>  ]<br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">npm install html-webpack-plugin -D</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">&#x27;path&#x27;</span>)</span><br><span class="line"><span class="keyword">const</span> <span class="title class_">HtmlWebpackPlugin</span> = <span class="built_in">require</span>(<span class="string">&#x27;html-webpack-plugin&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = &#123;</span><br><span class="line">  <span class="attr">mode</span>: <span class="string">&#x27;development&#x27;</span>, <span class="comment">// 模式</span></span><br><span class="line">  <span class="attr">entry</span>: <span class="string">&#x27;./src/index.js&#x27;</span>, <span class="comment">// 打包入口地址</span></span><br><span class="line">  <span class="attr">output</span>: &#123;</span><br><span class="line">    <span class="attr">filename</span>: <span class="string">&#x27;bundle.js&#x27;</span>, <span class="comment">// 输出文件名</span></span><br><span class="line">    <span class="attr">path</span>: path.<span class="title function_">join</span>(__dirname, <span class="string">&#x27;dist&#x27;</span>) <span class="comment">// 输出文件目录</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">module</span>: &#123;</span><br><span class="line">    <span class="attr">rules</span>: [</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="attr">test</span>: <span class="regexp">/\.css$/</span>, <span class="comment">//匹配所有的 css 文件</span></span><br><span class="line">        <span class="attr">use</span>: <span class="string">&#x27;css-loader&#x27;</span> <span class="comment">// use: 对应的 Loader 名称</span></span><br><span class="line">      &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">plugins</span>:[ <span class="comment">// 配置插件</span></span><br><span class="line">    <span class="keyword">new</span> <span class="title class_">HtmlWebpackPlugin</span>(&#123;</span><br><span class="line">      <span class="attr">template</span>: <span class="string">&#x27;./src/index.html&#x27;</span></span><br><span class="line">    &#125;)</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>每次打包的时候，打包目录都会遗留上次打包的文件，为了保持打包目录的纯净，我们需要在打包前将打包目录清空。这里我们可以使用插件<code>clean-webpack-plugin</code>来实现。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs js">$ npm install clean-webpack-plugin -D<br><br><span class="hljs-keyword">const</span> path = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;path&#x27;</span>)<br><span class="hljs-keyword">const</span> <span class="hljs-title class_">HtmlWebpackPlugin</span> = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;html-webpack-plugin&#x27;</span>)<br><span class="hljs-comment">// 引入插件</span><br><span class="hljs-keyword">const</span> &#123; <span class="hljs-title class_">CleanWebpackPlugin</span> &#125; = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;clean-webpack-plugin&#x27;</span>)<br><br><span class="hljs-variable language_">module</span>.<span class="hljs-property">exports</span> = &#123;<br>  <span class="hljs-comment">// ...</span><br>  <span class="hljs-attr">plugins</span>:[ <span class="hljs-comment">// 配置插件</span><br>    <span class="hljs-keyword">new</span> <span class="hljs-title class_">HtmlWebpackPlugin</span>(&#123;<br>      <span class="hljs-attr">template</span>: <span class="hljs-string">&#x27;./src/index.html&#x27;</span><br>    &#125;),<br>    <span class="hljs-keyword">new</span> <span class="hljs-title class_">CleanWebpackPlugin</span>() <span class="hljs-comment">// 引入插件</span><br>  ]<br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">$ npm install clean-webpack-plugin -D</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">&#x27;path&#x27;</span>)</span><br><span class="line"><span class="keyword">const</span> <span class="title class_">HtmlWebpackPlugin</span> = <span class="built_in">require</span>(<span class="string">&#x27;html-webpack-plugin&#x27;</span>)</span><br><span class="line"><span class="comment">// 引入插件</span></span><br><span class="line"><span class="keyword">const</span> &#123; <span class="title class_">CleanWebpackPlugin</span> &#125; = <span class="built_in">require</span>(<span class="string">&#x27;clean-webpack-plugin&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = &#123;</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">  <span class="attr">plugins</span>:[ <span class="comment">// 配置插件</span></span><br><span class="line">    <span class="keyword">new</span> <span class="title class_">HtmlWebpackPlugin</span>(&#123;</span><br><span class="line">      <span class="attr">template</span>: <span class="string">&#x27;./src/index.html&#x27;</span></span><br><span class="line">    &#125;),</span><br><span class="line">    <span class="keyword">new</span> <span class="title class_">CleanWebpackPlugin</span>() <span class="comment">// 引入插件</span></span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 <li><p><code>mode</code>模式</p>
 <p>值为<code>production</code>、<code>development</code>、<code>none</code>中的一个，默认值为<code>production</code>。</p>
@@ -412,11 +290,11 @@
 <li>多次引用一个依赖时可以分割出这个依赖，以免重复打包到 bundle 里。</li>
 </ul>
 <p><strong>webpack 安装</strong></p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js">yarn webpack webpack-cli -D<br></code></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yarn webpack webpack-cli -D</span><br></pre></td></tr></table></figure>
 
 <p>需要同时安装<code>webpack</code>和<code>webpack-cli</code>(webpack 命令行工具)。</p>
 <p>在<code>webpack.config.js</code>中配置 webpack。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> path = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;path&#x27;</span>)<br><br><span class="hljs-variable language_">module</span>.<span class="hljs-property">exports</span> = &#123;<br>  <span class="hljs-attr">mode</span>: <span class="hljs-string">&#x27;development&#x27;</span>, <span class="hljs-comment">// 模式</span><br>  <span class="hljs-attr">entry</span>: <span class="hljs-string">&#x27;./src/index.js&#x27;</span>, <span class="hljs-comment">// 打包入口地址</span><br>  <span class="hljs-attr">output</span>: &#123;<br>    <span class="hljs-attr">filename</span>: <span class="hljs-string">&#x27;bundle.js&#x27;</span>, <span class="hljs-comment">// 输出文件名</span><br>    <span class="hljs-attr">path</span>: path.<span class="hljs-title function_">join</span>(__dirname, <span class="hljs-string">&#x27;dist&#x27;</span>), <span class="hljs-comment">// 输出文件目录</span><br>  &#125;,<br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">&#x27;path&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = &#123;</span><br><span class="line">  <span class="attr">mode</span>: <span class="string">&#x27;development&#x27;</span>, <span class="comment">// 模式</span></span><br><span class="line">  <span class="attr">entry</span>: <span class="string">&#x27;./src/index.js&#x27;</span>, <span class="comment">// 打包入口地址</span></span><br><span class="line">  <span class="attr">output</span>: &#123;</span><br><span class="line">    <span class="attr">filename</span>: <span class="string">&#x27;bundle.js&#x27;</span>, <span class="comment">// 输出文件名</span></span><br><span class="line">    <span class="attr">path</span>: path.<span class="title function_">join</span>(__dirname, <span class="string">&#x27;dist&#x27;</span>), <span class="comment">// 输出文件目录</span></span><br><span class="line">  &#125;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h3 id="vite"><a href="#vite" class="headerlink" title="vite"></a>vite</h3><p>解决了 webpack 如下问题：</p>
 <ol>
@@ -438,13 +316,13 @@
 <p>localStorage 中一般浏览器支持的容量大小是 5M，针对不同的浏览器，localStorage 容量大小会有所不同。</p>
 <p><code>sessionStorage</code>：为每一个给定的源（given origin）维持一个独立的存储区域，该存储区域在页面会话期间可用（即只要浏览器处于打开状态，包括页面重新加载和恢复）。</p>
 <p><code>localStorage</code>：同样功能，在浏览器关闭，然后重新打开后数据仍然存在。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-variable language_">localStorage</span>.<span class="hljs-title function_">setItem</span>(<span class="hljs-string">&#x27;key&#x27;</span>, <span class="hljs-string">&#x27;value&#x27;</span>) <span class="hljs-comment">// 将value保存在key中</span><br><br><span class="hljs-keyword">let</span> value = <span class="hljs-variable language_">localStorage</span>.<span class="hljs-title function_">getItem</span>(<span class="hljs-string">&#x27;key&#x27;</span>) <span class="hljs-comment">// 获取key值</span><br><br><span class="hljs-variable language_">localStorage</span>.<span class="hljs-title function_">removeItem</span>(<span class="hljs-string">&#x27;key&#x27;</span>) <span class="hljs-comment">// 移除key值</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">localStorage</span>.<span class="title function_">setItem</span>(<span class="string">&#x27;key&#x27;</span>, <span class="string">&#x27;value&#x27;</span>) <span class="comment">// 将value保存在key中</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> value = <span class="variable language_">localStorage</span>.<span class="title function_">getItem</span>(<span class="string">&#x27;key&#x27;</span>) <span class="comment">// 获取key值</span></span><br><span class="line"></span><br><span class="line"><span class="variable language_">localStorage</span>.<span class="title function_">removeItem</span>(<span class="string">&#x27;key&#x27;</span>) <span class="comment">// 移除key值</span></span><br></pre></td></tr></table></figure>
 
 <p>若让  <code>localStorage</code>  设置的某个  <strong>「key」</strong>  能在指定时间内自动失效。</p>
 <ul>
 <li>初级解法</li>
 </ul>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-variable language_">localStorage</span>.<span class="hljs-title function_">setItem</span>(<span class="hljs-string">&#x27;key&#x27;</span>, <span class="hljs-string">&#x27;value&#x27;</span>)<br><br><span class="hljs-keyword">const</span> expire = <span class="hljs-number">60</span> * <span class="hljs-number">60</span> * <span class="hljs-number">1000</span><br><span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">() =&gt;</span> &#123;<br>  <span class="hljs-variable language_">localStorage</span>.<span class="hljs-title function_">removeItem</span>(<span class="hljs-string">&#x27;key&#x27;</span>)<br>&#125;, expire)<br></code></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">localStorage</span>.<span class="title function_">setItem</span>(<span class="string">&#x27;key&#x27;</span>, <span class="string">&#x27;value&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> expire = <span class="number">60</span> * <span class="number">60</span> * <span class="number">1000</span></span><br><span class="line"><span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="variable language_">localStorage</span>.<span class="title function_">removeItem</span>(<span class="string">&#x27;key&#x27;</span>)</span><br><span class="line">&#125;, expire)</span><br></pre></td></tr></table></figure>
 
 <h3 id="Audio"><a href="#Audio" class="headerlink" title="Audio"></a>Audio</h3><h3 id="Canvas"><a href="#Canvas" class="headerlink" title="Canvas"></a>Canvas</h3><h2 id="🚗-前端性能优化"><a href="#🚗-前端性能优化" class="headerlink" title="🚗 前端性能优化"></a>🚗 前端性能优化</h2><h3 id="回流、重绘"><a href="#回流、重绘" class="headerlink" title="回流、重绘"></a>回流、重绘</h3><p>首先浏览器会将 HTML 解析成 DOM，把 CSS 解析成 CSSOM，再将其结合产生<code>render tree</code>。</p>
 <p>当渲染树 render tree 中的一些元素需要更新样式，但这些样式属性只是改变元素的外观，风格，而不会影响布局的，比如<code>background-color</code>。则就叫称为<strong>重绘(repaint)</strong> 。</p>
@@ -469,10 +347,10 @@
 <ol>
 <li>合并样式修改</li>
 </ol>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> el = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">querySelector</span>(<span class="hljs-string">&#x27;.box&#x27;</span>)<br><br>el.<span class="hljs-property">style</span>.<span class="hljs-property">margin</span> = <span class="hljs-string">&#x27;5px&#x27;</span><br>el.<span class="hljs-property">style</span>.<span class="hljs-property">borderRadius</span> = <span class="hljs-string">&#x27;12px&#x27;</span><br>el.<span class="hljs-property">style</span>.<span class="hljs-property">boxShadow</span> = <span class="hljs-string">&#x27;1px 3px 4px #ccc&#x27;</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> el = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&#x27;.box&#x27;</span>)</span><br><span class="line"></span><br><span class="line">el.<span class="property">style</span>.<span class="property">margin</span> = <span class="string">&#x27;5px&#x27;</span></span><br><span class="line">el.<span class="property">style</span>.<span class="property">borderRadius</span> = <span class="string">&#x27;12px&#x27;</span></span><br><span class="line">el.<span class="property">style</span>.<span class="property">boxShadow</span> = <span class="string">&#x27;1px 3px 4px #ccc&#x27;</span></span><br></pre></td></tr></table></figure>
 
 <p>改为：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs js">.<span class="hljs-property">update</span>&#123;<br>  <span class="hljs-attr">margin</span>: 5px;<br>  border-<span class="hljs-attr">dadius</span>: 12px;<br>  box-<span class="hljs-attr">shadow</span>: 1px 3px 4px #ccc<br>&#125;<br><br><span class="hljs-keyword">const</span> el = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">querySelector</span>(<span class="hljs-string">&#x27;.box&#x27;</span>)<br>el.<span class="hljs-property">classList</span>.<span class="hljs-title function_">add</span>(<span class="hljs-string">&#x27;update&#x27;</span>)<br></code></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">.<span class="property">update</span>&#123;</span><br><span class="line">  <span class="attr">margin</span>: 5px;</span><br><span class="line">  border-<span class="attr">dadius</span>: 12px;</span><br><span class="line">  box-<span class="attr">shadow</span>: 1px 3px 4px #ccc</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> el = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&#x27;.box&#x27;</span>)</span><br><span class="line">el.<span class="property">classList</span>.<span class="title function_">add</span>(<span class="string">&#x27;update&#x27;</span>)</span><br></pre></td></tr></table></figure>
 
 <ol start="2">
 <li><p>避免使用 table 布局</p>
@@ -484,7 +362,7 @@
 <p>使用<code>display: none</code>，将元素从渲染树中完全移除，之后再在该 DOM 上操作，就不会触发回流重绘，最后将 display 改为显示，就只会触发这一次回流重绘。</p>
 <p>Tip: <code>visibility: hidden</code> 的元素只对重绘有影响，不影响重排。</p>
 <p>使用<code>documentFragment</code>创建一个 dom 文档片段，在它上面批量操作 dom，完成之后再添加到文档。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> el = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">querySelector</span>(<span class="hljs-string">&#x27;.box&#x27;</span>)<br><span class="hljs-keyword">const</span> fruits = [<span class="hljs-string">&#x27;front&#x27;</span>, <span class="hljs-string">&#x27;nanjiu&#x27;</span>, <span class="hljs-string">&#x27;study&#x27;</span>, <span class="hljs-string">&#x27;code&#x27;</span>]<br><span class="hljs-keyword">const</span> fragment = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">createDocumentFragment</span>()<br><br>fruits.<span class="hljs-title function_">forEach</span>(<span class="hljs-function">(<span class="hljs-params">item</span>) =&gt;</span> &#123;<br>  <span class="hljs-keyword">const</span> li = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">createElement</span>(<span class="hljs-string">&#x27;li&#x27;</span>)<br>  li.<span class="hljs-property">innerHTML</span> = item<br>  fragment.<span class="hljs-title function_">appendChild</span>(li)<br>&#125;)<br><br>el.<span class="hljs-title function_">appendChild</span>(fragment)<br></code></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> el = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&#x27;.box&#x27;</span>)</span><br><span class="line"><span class="keyword">const</span> fruits = [<span class="string">&#x27;front&#x27;</span>, <span class="string">&#x27;nanjiu&#x27;</span>, <span class="string">&#x27;study&#x27;</span>, <span class="string">&#x27;code&#x27;</span>]</span><br><span class="line"><span class="keyword">const</span> fragment = <span class="variable language_">document</span>.<span class="title function_">createDocumentFragment</span>()</span><br><span class="line"></span><br><span class="line">fruits.<span class="title function_">forEach</span>(<span class="function">(<span class="params">item</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> li = <span class="variable language_">document</span>.<span class="title function_">createElement</span>(<span class="string">&#x27;li&#x27;</span>)</span><br><span class="line">  li.<span class="property">innerHTML</span> = item</span><br><span class="line">  fragment.<span class="title function_">appendChild</span>(li)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">el.<span class="title function_">appendChild</span>(fragment)</span><br></pre></td></tr></table></figure>
 
 <p>DOM 脱离普通文本流</p>
 <p>使用<code>absulute</code>&#x2F;<code>fixed</code>让元素脱离普通文本流，使用绝对定位会使改元素单独成为渲染树中 body 的一个子元素，重流开销较小。</p>
@@ -493,354 +371,8 @@
 <p>使用<code>transform</code>、<code>opacity</code>、<code>filters</code>，不会引起回流重绘。</p>
 </li>
 </ol>
-
-                
-              </div>
-            
-            <hr/>
-            <div>
-              <div class="post-metas my-3">
-  
-  
-    <div class="post-meta">
-      <i class="iconfont icon-tags"></i>
-      
-        <a href="/tags/%E6%A8%A1%E5%9D%97%E5%8C%96/">#模块化</a>
-      
-    </div>
-  
-</div>
-
-
-              
-  
-
-  <div class="license-box my-3">
-    <div class="license-title">
-      <div>前端模块化</div>
-      <div>http://example.com/2022/09/14/前端模块化/</div>
-    </div>
-    <div class="license-meta">
-      
-        <div class="license-meta-item">
-          <div>作者</div>
-          <div>cheerioInf</div>
-        </div>
-      
-      
-        <div class="license-meta-item license-meta-date">
-          <div>发布于</div>
-          <div>2022年9月14日</div>
-        </div>
-      
-      
-      
-        <div class="license-meta-item">
-          <div>许可协议</div>
-          <div>
-            
-              
-              
-                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
-                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
-                    <i class="iconfont icon-by"></i>
-                  </span>
-                </a>
-              
-            
-          </div>
-        </div>
-      
-    </div>
-    <div class="license-icon iconfont"></div>
-  </div>
-
-
-
-              
-                <div class="post-prevnext my-3">
-                  <article class="post-prev col-6">
-                    
-                    
-                      <a href="/2022/09/14/%E5%8E%9F%E7%94%9FJS%E5%AE%9E%E7%8E%B0%E5%A4%A9%E6%B0%94%E9%A2%84%E6%8A%A5%E6%9F%A5%E8%AF%A2%E7%B3%BB%E7%BB%9F/" title="原生JS实现天气预报查询系统">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">原生JS实现天气预报查询系统</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
-                  </article>
-                  <article class="post-next col-6">
-                    
-                    
-                  </article>
-                </div>
-              
-            </div>
-
-            
-          </article>
-        </div>
-      </div>
-    </div>
-
-    <div class="side-col d-none d-lg-block col-lg-2">
-      
-  <aside class="sidebar" style="margin-left: -1rem">
-    <div id="toc">
-  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
-  <div class="toc-body" id="toc-body"></div>
-</div>
-
-
-
-  </aside>
-
-
-    </div>
-  </div>
-</div>
-
-
-
-
-
-  
-
-
-
-  
-
-
-
-  
-
-
-
-  
-
-
-
-  
-
-
-
-
-
-
-
-    
-
-    
-      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
-        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
-      </a>
-    
-
-    
-      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
-     aria-hidden="true">
-  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
-        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body mx-3">
-        <div class="md-form mb-5">
-          <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
-        </div>
-        <div class="list-group" id="local-search-result"></div>
-      </div>
-    </div>
-  </div>
-</div>
-
-    
-
-    
-  </main>
-
-  <footer>
-    <div class="footer-inner">
-  
-    <div class="footer-content">
-      到底嘞～
-    </div>
-  
-  
-    <div class="statistics">
-  
-  
-
-  
-    
-      <span id="busuanzi_container_site_pv" style="display: none">
-        总访问量 
-        <span id="busuanzi_value_site_pv"></span>
-         次
-      </span>
-    
-    
-      <span id="busuanzi_container_site_uv" style="display: none">
-        总访客数 
-        <span id="busuanzi_value_site_uv"></span>
-         人
-      </span>
-    
-    
-  
-</div>
-
-  
-  
-  
-</div>
-
-  </footer>
-
-  <!-- Scripts -->
-  
-  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
-  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
-
-  <script>
-    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
-    NProgress.start()
-    window.addEventListener('load', function() {
-      NProgress.done();
-    })
-  </script>
-
-
-<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
-<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
-<script  src="/js/events.js" ></script>
-<script  src="/js/plugins.js" ></script>
-
-
-
-
-
-  
-    <script  src="/js/img-lazyload.js" ></script>
-  
-
-
-
-
-  
-<script>
-  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
-    var toc = jQuery('#toc');
-    if (toc.length === 0 || !window.tocbot) { return; }
-    var boardCtn = jQuery('#board-ctn');
-    var boardTop = boardCtn.offset().top;
-
-    window.tocbot.init(Object.assign({
-      tocSelector     : '#toc-body',
-      contentSelector : '.markdown-body',
-      linkClass       : 'tocbot-link',
-      activeLinkClass : 'tocbot-active-link',
-      listClass       : 'tocbot-list',
-      isCollapsedClass: 'tocbot-is-collapsed',
-      collapsibleClass: 'tocbot-is-collapsible',
-      scrollSmooth    : true,
-      includeTitleTags: true,
-      headingsOffset  : -boardTop,
-    }, CONFIG.toc));
-    if (toc.find('.toc-list-item').length > 0) {
-      toc.css('visibility', 'visible');
-    }
-
-    Fluid.events.registerRefreshCallback(function() {
-      if ('tocbot' in window) {
-        tocbot.refresh();
-        var toc = jQuery('#toc');
-        if (toc.length === 0 || !tocbot) {
-          return;
-        }
-        if (toc.find('.toc-list-item').length > 0) {
-          toc.css('visibility', 'visible');
-        }
-      }
-    });
-  });
-</script>
-
-
-  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
-
-  <script>Fluid.plugins.codeWidget();</script>
-
-
-  
-<script>
-  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
-    window.anchors.options = {
-      placement: CONFIG.anchorjs.placement,
-      visible  : CONFIG.anchorjs.visible
-    };
-    if (CONFIG.anchorjs.icon) {
-      window.anchors.options.icon = CONFIG.anchorjs.icon;
-    }
-    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
-    var res = [];
-    for (var item of el) {
-      res.push('.markdown-body > ' + item.trim());
-    }
-    if (CONFIG.anchorjs.placement === 'left') {
-      window.anchors.options.class = 'anchorjs-link-left';
-    }
-    window.anchors.add(res.join(', '));
-
-    Fluid.events.registerRefreshCallback(function() {
-      if ('anchors' in window) {
-        anchors.removeAll();
-        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
-        var res = [];
-        for (var item of el) {
-          res.push('.markdown-body > ' + item.trim());
-        }
-        if (CONFIG.anchorjs.placement === 'left') {
-          anchors.options.class = 'anchorjs-link-left';
-        }
-        anchors.add(res.join(', '));
-      }
-    });
-  });
-</script>
-
-
-  
-<script>
-  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
-    Fluid.plugins.fancyBox();
-  });
-</script>
-
-
-  <script>Fluid.plugins.imageCaption();</script>
-
-  <script  src="/js/local-search.js" ></script>
-
-  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
-
-
-
-
-
-<!-- 主题的启动项，将它保持在最底部 -->
-<!-- the boot of the theme, keep it at the bottom -->
-<script  src="/js/boot.js" ></script>
-
-
-  
-
-  <noscript>
-    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
-  </noscript>
-</body>
-</html>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a target="_blank" rel="noopener" href="https://cheerioInf.cn">cheerioInf</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a target="_blank" rel="noopener" href="https://cheerioInf.cn">https://cheerioInf.cn</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">此文章版权归本网站所有，如有转载，请註明来自原作者</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E6%A8%A1%E5%9D%97%E5%8C%96/">模块化</a></div><div class="post_share"><div class="social-share" data-image="/linear-gradient(120deg,%20#d4fc79%200%25,%20#96e6a1%20100%25)" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-full"><a href="/2022/09/14/%E5%8E%9F%E7%94%9FJS%E5%AE%9E%E7%8E%B0%E5%A4%A9%E6%B0%94%E9%A2%84%E6%8A%A5%E6%9F%A5%E8%AF%A2%E7%B3%BB%E7%BB%9F/"><img class="prev-cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">原生JS实现天气预报查询系统</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/favicon.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">John Doe</div><div class="author-info__description">👋 Hi, I’m cheerioInf </br> 🌱 I’m currently learning frontEnd </br> 👀 I’m looking for help with React </br> 😄 Pronouns: he/him </br></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">3</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">3</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/cheerioInf"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/cheerioInf" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="/lltxsbsbg@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">这里将会记录我的前端学习或部分日常生活，如果你希望和我共同交流、一起进步就更好啦。</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E2%9D%93-%E4%BB%80%E4%B9%88%E6%98%AF%E6%A8%A1%E5%9D%97%E5%8C%96"><span class="toc-number">1.</span> <span class="toc-text">❓ 什么是模块化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%9A%80-%E6%A8%A1%E5%9D%97%E5%8C%96%E7%9A%84%E5%A5%BD%E5%A4%84"><span class="toc-number">2.</span> <span class="toc-text">🚀 模块化的好处</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%91%8D-%E6%A8%A1%E5%9D%97%E5%8C%96%E7%9A%84%E6%96%B9%E6%B3%95"><span class="toc-number">3.</span> <span class="toc-text">👍 模块化的方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%97%A9%E6%9C%9F%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="toc-number">3.1.</span> <span class="toc-text">早期解决方案</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A8%A1%E5%9D%97%E5%8C%96%E8%A7%84%E8%8C%83"><span class="toc-number">3.2.</span> <span class="toc-text">模块化规范</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">3.3.</span> <span class="toc-text">总结</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%94%A7-%E5%89%8D%E7%AB%AF%E6%9E%84%E5%BB%BA%E5%B7%A5%E5%85%B7"><span class="toc-number">4.</span> <span class="toc-text">🔧 前端构建工具</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%97%B6%E5%80%99%E4%BD%BF%E7%94%A8%E6%9E%84%E5%BB%BA%E5%B7%A5%E5%85%B7%EF%BC%9F"><span class="toc-number">4.1.</span> <span class="toc-text">什么时候使用构建工具？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#vite"><span class="toc-number">4.2.</span> <span class="toc-text">vite</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%90%A2-%E5%89%8D%E7%AB%AF%E8%A7%84%E8%8C%83%E5%B7%A5%E5%85%B7"><span class="toc-number">5.</span> <span class="toc-text">🐢 前端规范工具</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#TypeScript"><span class="toc-number">5.1.</span> <span class="toc-text">TypeScript</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Eslint"><span class="toc-number">5.2.</span> <span class="toc-text">Eslint</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%8F%A0-Web-API"><span class="toc-number">6.</span> <span class="toc-text">🏠 Web API</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Storage"><span class="toc-number">6.1.</span> <span class="toc-text">Storage</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Audio"><span class="toc-number">6.2.</span> <span class="toc-text">Audio</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Canvas"><span class="toc-number">6.3.</span> <span class="toc-text">Canvas</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%9A%97-%E5%89%8D%E7%AB%AF%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96"><span class="toc-number">7.</span> <span class="toc-text">🚗 前端性能优化</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%9E%E6%B5%81%E3%80%81%E9%87%8D%E7%BB%98"><span class="toc-number">7.1.</span> <span class="toc-text">回流、重绘</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/09/17/%E3%80%8C%E7%8A%80%E7%89%9B%E4%B9%A6%E3%80%8D-%E7%AC%AC%E4%B8%80%E7%AB%A0-JS%E7%AE%80%E4%BB%8B/" title="「犀牛书」 第一章 JS简介">「犀牛书」 第一章 JS简介</a><time datetime="2022-09-17T14:30:50.000Z" title="发表于 2022-09-17 22:30:50">2022-09-17</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/09/14/%E5%8E%9F%E7%94%9FJS%E5%AE%9E%E7%8E%B0%E5%A4%A9%E6%B0%94%E9%A2%84%E6%8A%A5%E6%9F%A5%E8%AF%A2%E7%B3%BB%E7%BB%9F/" title="原生JS实现天气预报查询系统">原生JS实现天气预报查询系统</a><time datetime="2022-09-14T12:29:34.000Z" title="发表于 2022-09-14 20:29:34">2022-09-14</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/09/14/%E5%89%8D%E7%AB%AF%E6%A8%A1%E5%9D%97%E5%8C%96/" title="前端模块化">前端模块化</a><time datetime="2022-09-14T11:22:46.000Z" title="发表于 2022-09-14 19:22:46">2022-09-14</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2022 By John Doe</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">welcome to my blog!</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><div class="js-pjax"></div><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
