@@ -1,0 +1,529 @@
+.ac-editor {
+    height: 100%;
+    width: 100%;
+    background-color: #f2f2f2;
+    margin: 0;
+    overflow: hidden;
+}
+
+.ac-editor-menu {
+    height: 6.5vh;
+    width: 100%;
+}
+
+.ac-editor-menu-whole {
+    height: 3vh;
+    width: 100%;
+    margin: 0;
+    border-top: 1px solid #c9c9c9;
+    border-bottom: 1px solid #c9c9c9;
+}
+
+.ac-editor-menu-shortcut {
+    height: 3.5vh;
+    width: 100%;
+    border-top: 0;
+    border-bottom: 1px solid #c9c9c9;
+    margin: 0;
+}
+
+.ac-editor-workspace {
+    width: 100%;
+    height: calc(100% - 6.5vh);
+    border-top: 0;
+    border-bottom: 0;
+    margin: 0;
+}
+
+.ac-editor-workspace-nav {
+    width: 1.5vw;
+    height: 100%;
+    margin: 0;
+    border-left: 0;
+    border-right: 1px solid #c9c9c9;
+    float: left;
+    display: inline-block;
+}
+
+.ac-editor-workspace-project {
+    width: calc(100% - 1.5vw);
+    height: 100%;
+    margin: 0;
+    border-left: 0;
+    border-right: 0;
+    float: left;
+    display: inline-block;
+}
+
+.ac-editor-workspace-project-nav {
+    width: 13vw;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    float: left;
+    border-right: 1px solid #c9c9c9;
+    background-color: white;
+}
+
+.ac-editor-workspace-project-nav-menu {
+    height: 3vh;
+    width: 100%;
+    background: #f2f2f2;
+    border-bottom: 1px solid #c9c9c9;
+    border-right: 1px solid #c9c9c9;
+    margin: 0;
+    overflow: hidden;
+}
+
+.ac-editor-workspace-project-nav-body {
+    height: calc(100% - 3vh);
+    width: 100%;
+    margin: 0;
+    overflow-x: hidden;
+}
+
+.ac-editor-workspace-project-nav-body-item {
+    margin: 0;
+    padding: 0;
+    white-space: nowrap;
+
+    user-select: none;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -o-user-select: none;
+}
+
+.ac-editor-workspace-project-nav-body-item-self {
+    height: 3vh;
+}
+
+.ac-editor-workspace-project-nav-body-item-self:hover {
+    background: #e5f3ff;
+    border-right: 1px solid #c9c9c9;
+}
+
+.ac-editor-workspace-project-nav-body-item-self-selected {
+    background: #cce8ff;
+    border-right: 1px solid #c9c9c9;
+}
+
+.ac-editor-workspace-project-nav-body-item-self-chevron {
+    width: 1vw;
+    font-size: 0.5vw;
+    display: inline-block;
+    opacity: 0.6;
+}
+
+.ac-editor-workspace-project-nav-body-item-self-chevron-closed {
+    color: #a8a8a8;
+}
+
+.ac-editor-workspace-project-nav-body-item-self-chevron-open {
+    color: #404040;
+}
+
+.ac-editor-workspace-project-nav-body-item-self-chevron-open {
+    width: 1vw;
+    color: #4c4c4c;
+    font-size: 0.7vw;
+    display: inline-block;
+}
+
+.ac-editor-workspace-project-nav-body-item-self-icon {
+    width: 3vh;
+    height: 100%;
+    margin-left: 0.5vh;
+    display: inline-block;
+}
+
+.ac-editor-workspace-project-nav-body-item-self-icon > img {
+    width: 2.3vh;
+    height: 2.3vh;
+    vertical-align: middle;
+    margin-bottom: 0.5vh;
+}
+
+.ac-editor-workspace-project-nav-body-item-self-title {
+    height: 100%;
+    font-size: 0.7vw;
+    display: inline-block;
+}
+
+.ac-editor-workspace-project-nav-body-item-son {
+    margin-left: 1vw;
+}
+
+.ac-editor-workspace-project-nav-body-context-menu {
+    position: fixed;
+    width: 10vw;
+    font-size: 1vh;
+    margin: 0;
+    padding: 0;
+    z-index: 10000000;
+
+    box-shadow: 3px 3px 3px #c1c1c1;
+    background: #eeeeee;
+}
+
+.ac-editor-workspace-project-nav-body-context-menu .ui-state-active {
+    background-color: #ffffff;
+    color: black;
+    border-color: #c5c5c5;
+}
+
+.ac-editor-workspace-project-nav-body-context-menu > li > ul {
+    width: 10vw;
+
+    box-shadow: 3px 3px 3px #c1c1c1;
+    background: #eeeeee;
+}
+
+.ac-editor-workspace-project-nav-body-context-menu > li > ul > li > ul {
+    width: 10vw;
+
+    box-shadow: 3px 3px 3px #c1c1c1;
+    background: #eeeeee;
+}
+
+.ac-editor-workspace-project-main {
+    width: calc(100% - 13vw);
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    float: left;
+}
+
+.ac-editor-workspace-project-main-empty {
+    height: 100%;
+    width: 100%;
+    border-bottom: 1px solid #c9c9c9;
+    margin: 0;
+    padding-top: 15vh;
+    padding-left: 10vw;
+}
+
+.ac-editor-workspace-project-main-empty-list {
+    width: 50%;
+    height: 50%;
+    font-size: 1.6vh;
+}
+
+.ac-editor-workspace-project-main-empty-list-item {
+    padding-bottom: 2vh;
+    color: grey;
+    cursor: pointer;
+    width: auto;
+    height: 4vh;
+    white-space: nowrap;
+
+    /* 不允许导航栏被选择 */
+    user-select: none;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -o-user-select: none;
+}
+
+.ac-editor-workspace-project-main-empty-list-item:hover {
+    font-size: 110%;
+}
+
+.ac-editor-workspace-project-main-empty-list-item-shortcut {
+    font-weight: bold;
+    color: #64629a;
+    font-size: 110%;
+}
+
+.ac-editor-workspace-project-main-nav {
+    height: 3vh;
+    width: 100%;
+    border-bottom: 1px solid #c9c9c9;
+    margin: 0;
+    overflow: hidden;
+}
+
+.ac-editor-workspace-project-main-nav-file {
+    display: inline-block;
+    height: 100%;
+    margin: 0;
+    padding: 0.5vh 0.2vw 0.5vh 0.2vw;
+    font-size: 1vh;
+    border-right: 1px solid #c9c9c9;
+    overflow: hidden;
+    white-space: nowrap;
+
+    /* 不允许导航栏被选择 */
+    user-select: none;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -o-user-select: none;
+}
+
+.ac-editor-workspace-project-main-nav-file:hover {
+    background: lightgrey;
+}
+
+.ac-editor-workspace-project-main-nav-file-focus {
+    background: white;
+    border-bottom: 1px solid #4083c9;
+}
+
+.ac-editor-workspace-project-main-nav-file-icon-close {
+    margin: 0 0.2vw 0 0;
+    max-height: 1.3vh;
+    opacity: 0.5;
+}
+
+.ac-editor-workspace-project-main-nav-file-icon-close:hover {
+    opacity: 1;
+}
+
+.ac-editor-workspace-project-main-editor {
+    height: calc(100% - 3vh);
+    width: 100%;
+    border-bottom: 1px solid #c9c9c9;
+    margin: 0;
+}
+
+.ac-editor-menu-whole-list {
+    height: 100%;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    font-size: 1.3vh;
+    position:relative;
+
+    /* 不允许菜单被选择 */
+    user-select: none;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -o-user-select: none;
+}
+
+.ac-editor-menu-whole-list > li  {
+    height: 100%;
+    display: inline-block;
+    padding: 0.3vh 0.8vw 0.3vh 0.8vw;
+    position: relative;
+}
+
+.ac-editor-menu-whole-list > li:hover  {
+    height: 100%;
+    background-color: #1a7dc4;
+    color: white;
+}
+
+.ac-editor-menu-whole-list-second-menu {
+    position: absolute;
+    top: 3vh;
+    left: 0;
+    display: none;
+    z-index: 1000000;
+}
+
+.ac-editor-menu-whole-list-second-menu-selected {
+    width: 10vw;
+    display: inline-block;
+}
+
+.ac-editor-menu-whole-list-second-menu-selected > li {
+    width: 100%;
+}
+
+.ac-editor-menu-whole-list-second-menu > li > div {
+    width: 100%;
+    display: inline-block;
+}
+
+.ac-editor-menu-whole-list-item-shortcut {
+    float: right;
+}
+
+.ac-editor-menu-whole-list .ui-menu {
+    background-color: #f2f2f2;
+}
+
+.ac-editor-menu-whole-list .ui-widget.ui-widget-content {
+    border: 1px solid #c5c5c5;
+}
+
+.ac-editor-menu-whole-list .ui-menu-item {
+    width: 100%;
+    display: inline-block;
+}
+
+.ac-editor-menu-whole-list .ui-state-active {
+    background-color: #1a7dc4;
+}
+
+.ac-eidtor-menu-file-new-field {
+    height: 100%;
+    width: 100%;
+}
+
+.ac-eidtor-menu-file-new-field-item {
+    padding: 1vh 1vw 1vh 1vw;
+    display: inline-block;
+    width: 7vw;
+    margin: 0 auto;
+    cursor: pointer;
+}
+
+.ac-eidtor-menu-file-new-field-item:hover {
+    background: #dddd;
+}
+
+.ac-eidtor-menu-file-save-field {
+    height: 100%;
+    width: 100%;
+}
+
+.ac-editor-run-code-window {
+    height: 100%;
+    width: 100%;
+}
+
+.ac-editor-run-code-window-head {
+    height: 4vh;
+    width: 100%;
+    background: #f2f2f2;
+    border-top: 1px solid #c9c9c9;
+    border-bottom: 1px solid #c9c9c9;
+    overflow: hidden;
+}
+
+.ac-editor-run-code-window-head-run {
+    color: #59a869;
+    height: 100%;
+    font-size: 2vh;
+    padding: 1vh;
+    float: left;
+}
+
+.ac-editor-run-code-window-head-state {
+    margin-left: 2vw;
+    height: 100%;
+    float: left;
+    display: inline-block;
+    white-space: nowrap;
+    overflow: hidden;
+
+    /* 不允许菜单被选择 */
+    user-select: none;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -o-user-select: none;
+}
+
+.ac-editor-run-code-window-head-state-result {
+    font-size: 1.7vh;
+    height: 100%;
+    float: left;
+    padding: 1vh;
+    display: inline-block;
+}
+
+.ac-editor-run-code-window-head-state-loading {
+    height: 100%;
+    float: left;
+    padding: 1vh 0 1vh 0;
+    display: inline-block;
+}
+
+.ac-editor-run-code-window-head-state-time {
+    font-size: 1.7vh;
+    margin-left: 1vw;
+    height: 100%;
+    float: left;
+    padding: 1vh;
+    display: inline-block;
+}
+
+.ac-editor-run-code-window-head-run:hover {
+    background: #dfdfdf;
+    color: #59a869;
+}
+
+.ac-editor-run-code-window-head-run:focus {
+    color: #59a869;
+}
+
+.ac-editor-run-code-window-body {
+    height: calc(100% - 4vh);
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.ac-editor-run-code-window-body-stdin {
+    height: 100%;
+    width: 50%;
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+    float: left;
+    border-right: 1px solid #c9c9c9;
+}
+
+.ac-editor-run-code-window-body-stdin-title {
+    height: 3vh;
+    width: 100%;
+    background: #f2f2f2;
+    border-bottom: 1px solid #c9c9c9;
+    border-right: 1px solid #c9c9c9;
+    font-size: 1.6vh;
+    line-height: 3vh;
+    padding-left: 0.5vw;
+    overflow: hidden;
+
+    /* 不允许菜单被选择 */
+    user-select: none;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -o-user-select: none;
+}
+
+.ac-editor-run-code-window-body-stdin-content {
+    height: calc(100% - 3vh);
+    width: 100%;
+    border-right: 1px solid #c9c9c9;
+}
+
+.ac-editor-run-code-window-body-stdout {
+    height: 100%;
+    width: 50%;
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+    float: left;
+    border-left: 1px solid #c9c9c9;
+}
+
+.ac-editor-run-code-window-body-stdout-title {
+    height: 3vh;
+    width: 100%;
+    background: #f2f2f2;
+    border-bottom: 1px solid #c9c9c9;
+    font-size: 1.6vh;
+    line-height: 3vh;
+    padding-left: 0.5vw;
+    overflow: hidden;
+
+    /* 不允许菜单被选择 */
+    user-select: none;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -o-user-select: none;
+}
+
+.ac-editor-run-code-window-body-stdout-content {
+    height: calc(100% - 3vh);
+    width: 100%;
+    border-left: 1px solid #c9c9c9;
+}

@@ -1,0 +1,102 @@
+.fs-gui-window {
+    position: fixed;
+    width: 50vw;
+    height: 60vh;
+
+    top: 10vh;
+    left: 10vw;
+
+    z-index: 2000;
+
+    border-radius: 0;
+    border: 1px solid #ddd;
+    margin: 0;
+}
+
+.fs-gui-window-soft {
+    width: 30vw;
+    height: 40vh;
+}
+
+.fs-gui-window-hard {
+    width: 40vw;
+    height: 50vh;
+}
+
+.fs-gui-window-heading {
+    height: 4vh;
+    min-height: 4vh;
+    padding: 0;
+
+    overflow: hidden;
+    white-space: nowrap;
+
+    opacity: 0.5;
+    border: 0 solid #ddd;
+
+    user-select: none;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -o-user-select: none;
+}
+
+.fs-gui-window-heading-focus {
+    opacity: 1;
+}
+
+.fs-gui-window-heading-icon-img {
+    height: 2.5vh;
+    margin: 0.75vh 0 0.75vh 0.5vw;
+}
+
+.fs-gui-window-heading-title {
+    line-height: 4vh;
+    margin-left: 0.5vw;
+    font-size: 1.6vh;
+    float: left;
+
+    overflow: hidden;
+    white-space: nowrap;
+
+    z-index: 2001;
+}
+
+.fs-gui-window-heading-btn {
+    width: 5vh;
+    height: 4vh;
+    padding: 1vh 1.5vh 1vh 1.5vh;
+
+    z-index: 2002;
+}
+
+.fs-gui-window-heading-btn-minimize:hover {
+    background-color: #DADADA;
+    color: black;
+}
+
+.fs-gui-window-heading-btn-maximize:hover {
+    background-color: #DADADA;
+    color: black;
+}
+
+.fs-gui-window-heading-btn-close:hover {
+    background-color: #17EEDC;
+    color: white;
+    filter: invert(100%);
+}
+
+.fs-gui-window-body {
+    overflow: auto;
+    height: calc(100% - 4vh);
+    padding: 0;
+}
+
+.fs-gui-window-focus {
+    box-shadow: 0 10px 15px 0 rgba(0,0,0,0.18);
+    border: 1px solid #ddd;
+}
+
+.ui-resizable-handle {
+    background-image: none;
+ }

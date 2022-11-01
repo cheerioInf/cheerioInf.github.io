@@ -1,0 +1,403 @@
+.file-explorer {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    overflow: hidden;
+}
+
+.file-explorer-nav {
+    height: 3.5vh;
+    width: 100%;
+    margin: 0;
+    padding: 0 0 0 1vw;
+    border-top: 0.1vh solid #c9c9c9;
+    /*border-bottom: 0.1vh solid #c9c9c9;*/
+    overflow: hidden;
+
+    user-select: none;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -o-user-select: none;
+}
+
+.file-explorer-nav > button {
+    height: 100%;
+    width: 1.5vw;
+    margin: 0  0 0 0.2vw;
+    /*opacity: 0.3;*/
+    font-size: 1.2vh;
+}
+
+.file-explorer-nav-button-disabled {
+    opacity: 0.3;
+}
+
+.file-explorer-nav > input {
+    height: calc(100% - 0.6vh);
+    width: calc(100% - 9.5vw);
+    font-size: 1.6vh;
+    line-height: 1.6vh;
+    resize: none;
+    margin: 0.3vh 0 0.3vh 0;
+    border: 0.1vh solid #c9c9c9;
+    padding: 0;
+}
+
+.file-explorer-main {
+    height: calc(100% - 3.5vh);
+    border-bottom: 0.1vh solid #c9c9c9;
+}
+
+.file-explorer-main-save {
+    height: calc(100% - 3vh - 10vh);
+    border-bottom: 0.1vh solid #c9c9c9;
+}
+
+.file-explorer-main-open {
+    height: calc(100% - 3vh - 7vh);
+    border-bottom: 0.1vh solid #c9c9c9;
+}
+
+.file-explorer-main-nav {
+    width: 10vw;
+    height: 100%;
+    margin: 0;
+    float: left;
+    border-right: 0.01vw solid #c9c9c9;
+    background-color: white;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.file-explorer-main-nav-item {
+    margin: 0;
+    padding: 0;
+    white-space: nowrap;
+
+    user-select: none;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -o-user-select: none;
+}
+
+.file-explorer-main-nav-item-self {
+    height: 3vh;
+}
+
+.file-explorer-main-nav-item-self:hover {
+    background: #e5f3ff;
+}
+
+.file-explorer-main-nav-item-self-selected {
+    background: #cce8ff;
+}
+
+.file-explorer-main-nav-item-self-chevron {
+    width: 1vw;
+    font-size: 0.5vw;
+    display: inline-block;
+    opacity: 0.6;
+}
+
+.file-explorer-main-nav-item-self-chevron-closed {
+    color: #a8a8a8;
+}
+
+.file-explorer-main-nav-item-self-chevron-open {
+    color: #404040;
+}
+
+.file-explorer-main-nav-item-self-chevron-open {
+    width: 1vw;
+    color: #4c4c4c;
+    font-size: 0.7vw;
+    display: inline-block;
+}
+
+.file-explorer-main-nav-item-self-icon {
+    width: 3vh;
+    height: 100%;
+    margin-left: 0.5vh;
+    display: inline-block;
+}
+
+.file-explorer-main-nav-item-self-icon > img {
+    width: 2.3vh;
+    height: 2.3vh;
+    vertical-align: middle;
+    margin-bottom: 0.5vh;
+}
+
+.file-explorer-main-nav-item-self-title {
+    height: 100%;
+    font-size: 0.7vw;
+    display: inline-block;
+}
+
+.file-explorer-main-nav-item-son {
+    margin-left: 1vw;
+}
+
+.file-explorer-main-field {
+    width: calc(100% - 10vw);
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    float: left;
+    overflow: auto;
+}
+
+.file-explorer-main-field-context-menu {
+    position: fixed;
+    width: 10vw;
+    font-size: 1vh;
+    margin: 0;
+    padding: 0;
+    z-index: 10000000;
+
+    box-shadow: 3px 3px 3px #c1c1c1;
+    background: #eeeeee;
+}
+
+.file-explorer-main-field-context-menu .ui-state-active {
+    background-color: #ffffff;
+    color: black;
+    border-color: #c5c5c5;
+}
+
+.file-explorer-main-field-context-menu > li > ul {
+    width: 10vw;
+
+    box-shadow: 3px 3px 3px #c1c1c1;
+    background: #eeeeee;
+}
+
+.file-explorer-main-field-context-menu > li > ul > li > ul {
+    width: 10vw;
+
+    box-shadow: 3px 3px 3px #c1c1c1;
+    background: #eeeeee;
+}
+
+.file-explorer-main-field-item {    /* 每个文件 */
+    width: 4vw;
+    height: 7vw;
+    overflow: hidden;
+    display: inline-block;
+    margin: 0 0.1vw 1vw 0.1vw;
+    border: 0.1vh solid white;
+
+    user-select: none;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -o-user-select: none;
+}
+
+.file-explorer-main-field-item-selected {
+    background: #cce8ff;
+}
+
+.file-explorer-main-field-item-selected-last {
+    border: 0.1vh solid #99d1ff;
+}
+
+.file-explorer-main-field-item-icon {   /* 文件图标 */
+    width: 100%;
+    height: 4vw;
+    padding: 0.2vw;
+    overflow: hidden;
+}
+
+.file-explorer-main-field-item-icon-cut {
+    opacity: 0.3;
+}
+
+.file-explorer-main-field-item-icon > img {
+    width: 3.6vw;
+    height: 3.6vw;
+}
+
+.file-explorer-main-field-item-title {  /* 文件标题 */
+    width: 100%;
+    height: 3vw;
+    text-align: center;
+    overflow: hidden;
+    font-size: 0.7vw;
+
+    word-break: break-all;
+}
+
+.file-explorer-main-field-item-textarea {
+    width: 100%;
+    height: 2.8vw;
+    font-size: 0.7vw;
+    resize: none;
+    overflow: hidden;
+    border: 0.1vh solid;
+
+    word-break: break-all;
+}
+
+.file-explorer-info {
+    background: #f0f0f0;
+    margin: 0;
+    padding: 0.5vh 0 0 0;
+
+    user-select: none;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -o-user-select: none;
+}
+
+.file-explorer-info-save {
+    height: 10vh;
+}
+
+.file-explorer-info-open {
+    height: 7vh;
+}
+
+.file-explorer-info-item {
+    width: 100%;
+    height: 3vh;
+    margin: 0;
+    padding: 0;
+}
+
+.file-explorer-info-item-label {
+    width: 5vw;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    display: inline-block;
+    text-align: right;
+    font-size: 1.2vh;
+}
+
+.file-explorer-info-item-input {
+    width: calc(100% - 6vw);
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    display: inline-block;
+}
+
+.file-explorer-info-item-input > input {
+    width: calc(100% - 1vw);
+    font-size: 1.2vh;
+    height: 90%;
+    margin: 0;
+    padding: 0;
+}
+
+.file-explorer-info-submit {
+    height: 3.5vh;
+    width: 100%;
+    padding: 0.3vh 1vw 0 0;
+}
+
+.file-explorer-info-submit-btn {
+    float: right;
+    width: 4.5vw;
+    font-size: 1.2vh;
+    margin-left: 0.5vw;
+    background: #e1e1e1;
+    border: 0.1vh solid #adadad;
+}
+
+.file-explorer-notice-error {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    overflow: hidden;
+}
+
+.file-explorer-notice-error-body {
+    width: 100%;
+    height: calc(100% - 4vh);
+}
+
+.file-explorer-notice-error-body-icon {
+    width: 4vw;
+    height: 100%;
+    display: inline-block;
+    padding: 0.75vh 0.5vw 0.75vh 0.5vw;
+}
+
+.file-explorer-notice-error-body-icon > img {
+    width: 2.2vw;
+}
+
+.file-explorer-notice-error-body-text {
+    font-size: 1.5vh;
+    padding: 1vh;
+    width: calc(100% - 5vw);
+    height: 100%;
+    display: inline-block;
+}
+
+.file-explorer-notice-error-footer {
+    width: 100%;
+    height: 4vh;
+    background: #f0f0f0;
+    padding: 1vh 1vw 0 0;
+}
+
+.file-explorer-notice-error-footer > button {
+    width: 3vw;
+    font-size: 1.2vh;
+    background: #e1e1e1;
+    border: 0.1vh solid #adadad;
+    float: right;
+}
+
+.file-explorer-notice-warning {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    overflow: hidden;
+}
+
+.file-explorer-notice-warning-body {
+    width: 100%;
+    height: calc(100% - 4vh);
+}
+
+.file-explorer-notice-warning-body-icon {
+    width: 4vw;
+    height: 100%;
+    display: inline-block;
+    padding: 0.75vh 0.5vw 0.75vh 0.5vw;
+}
+
+.file-explorer-notice-warning-body-icon > img {
+    width: 2.2vw;
+}
+
+.file-explorer-notice-warning-body-text {
+    font-size: 1.5vh;
+    padding: 1vh;
+    width: calc(100% - 5vw);
+    height: 100%;
+    display: inline-block;
+}
+
+.file-explorer-notice-warning-footer {
+    width: 100%;
+    height: 4vh;
+    background: #f0f0f0;
+    padding: 1vh 1vw 0 0;
+}
+
+.file-explorer-notice-warning-footer > button {
+    width: 4vw;
+    font-size: 0.75vw;
+    background: #e1e1e1;
+    border: 0.1vh solid #adadad;
+    margin-left: 0.3vw;
+    float: right;
+}
